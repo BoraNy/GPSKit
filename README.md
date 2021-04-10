@@ -9,7 +9,7 @@ For this GPS Kit contained a fully functional GNSS Receiver with Digital Compass
 
 # Features
 
-* Fully Location and Data from GNSS Data Encoding
+* Full Location Logging and Data from GNSS Data Encoding
 * Start Point Recovery
 * Distance From Start Point Measurement
 * Sattellite Connection Tracker
