@@ -23,7 +23,7 @@ For this GPS Kit contained a fully functional GNSS Receiver with Digital Compass
 In case of the reception signal took too long the info screen will pop up
 and show how to get a better reception signal
 
-** A Button ** Press and Hold to show the location recovery from EEPROM
-** B Button ** Press to switch between Menus
-** C Button ** Press and Hold to show the reception signal duration from Satellites
+* **A Button** Press and Hold to show the location recovery from EEPROM
+* **B Button** Press to switch between Menus
+* **C Button** Press and Hold to show the reception signal duration from Satellites
 
