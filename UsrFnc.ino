@@ -130,27 +130,27 @@ void drawBitmap(int id) {
   display.setTextSize(1);
   display.setTextColor(WHITE);
   if (id == CONNECTING_ICON) {
-    display.setCursor(55, 57);  display.print(F("GPS"));
+    display.setCursor(22, 57);  display.print(F("GPS NAVIGATION"));
     display.drawBitmap(38, 0, connecting_icon, 52, 52, 1);
   }
   if (id == COMPASS_ICON) {
-    display.setCursor(43, 57);  display.print(F("COMPASS"));
+    display.setCursor(19, 57);  display.print(F("DIGITAL COMPASS"));
     display.drawBitmap(38, 0, compass_logo, 52, 52, 1);
   }
   if (id == ALTIMETER_ICON) {
-    display.setCursor(37, 57);  display.print(F("ALTIMETER"));
+    display.setCursor(19, 57);  display.print(F("ALTIMETER GRAPH"));
     display.drawBitmap(38, 0, altimeter_logo, 52, 52, 1);
   }
   if (id == HARDWARE_ICON) {
-    display.setCursor(52, 57);  display.print(F("INFO"));
+    display.setCursor(25, 57);  display.print(F("HARDWARE INFO"));
     display.drawBitmap(38, 0, task_icon, 52, 52, 1);
   }
   if (id == GPS_ICON) {
-    display.setCursor(55, 57);  display.print(F("GPS"));
+    display.setCursor(22, 57);  display.print(F("GPS NAVIGATION"));
     display.drawBitmap(38, 0, gps_map_icon, 52, 52, 1);
   }
   if (id == DEVIATION_MAP_ICON) {
-    display.setCursor(26, 57);  display.print(F("DEVIATION MAP"));
+    display.setCursor(25, 57);  display.print(F("DEVIATION MAP"));
     display.drawBitmap(38, 0, radar_icon, 52, 52, 1);
   }
   if (id == SATELLITE_ICON) {

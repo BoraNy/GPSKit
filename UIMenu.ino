@@ -1,11 +1,31 @@
 void UIMenu(void){
+        CButton(); /* Get C Button Input */
+
         if((menu.iconX > 32) && (menu.iconY == 32)) {
                 /* Move Icon Cursor to Home */
                 menu.iconX = 0;
                 menu.iconY = 0;
         }
 
-        /* Select Tab Menu */
+        if((menu.iconX < 0) && (menu.iconY == 0)) {
+                /* Move Icon Cursor to END */
+                menu.iconX = 32;
+                menu.iconY = 32;
+        }
+
+        if((menu.iconX > 96) && (menu.iconY == 0)) {
+                /* Move to Second Line */
+                menu.iconX = 0;
+                menu.iconY = 32;
+        }
+
+        if((menu.iconX < 0) && (menu.iconY == 32)) {
+                /* Move to First Line */
+                menu.iconX = 96;
+                menu.iconY = 0;
+        }
+
+        /* Get Tab ID on First Line */
         if ((menu.iconY == 0) && (menu.switchMenu == false)) {
                 if(menu.iconX == 0)
                         menu.tab = 0;
@@ -16,7 +36,7 @@ void UIMenu(void){
                 if(menu.iconX == 96)
                         menu.tab = 3;
         }
-
+        /* Get Tab ID on Second Line */
         if((menu.iconY == 32) && (menu.switchMenu == false)) {
                 if(menu.iconX == 0) {
                         menu.tab = 4;
@@ -24,12 +44,6 @@ void UIMenu(void){
                 }
                 if(menu.iconX == 32)
                         menu.tab = 5;
-        }
-
-        if((menu.iconX > 96) && (menu.iconY == 0)) {
-                /* Move to Second Line */
-                menu.iconY = 32;
-                menu.iconX = 0;
         }
 
         /* Draw Menu Icons */
@@ -42,7 +56,7 @@ void UIMenu(void){
         display.drawRoundRect(64, 32, 32, 32, 3, BLACK); /* Clear Error Rect */
         display.drawRoundRect(menu.iconX, menu.iconY, 32, 32, 3, WHITE);
         display.display();
-        
+
         while (menu.switchMenu) {
                 switch (menu.tab) {
                 case 0:
