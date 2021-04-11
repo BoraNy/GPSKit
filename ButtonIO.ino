@@ -7,7 +7,7 @@ void BButtonISR(void) {
         last_interrupt_time = millis(); /* Update Interrupt Time */
 
         /* Clear Old Rectangle */
-        display.drawRect(menu.iconX - 32, menu.iconY, 32, 32, BLACK);
+        display.drawRoundRect(menu.iconX - 32, menu.iconY, 32, 32, 3, BLACK);
 }
 
 void AButtonISR(void){
