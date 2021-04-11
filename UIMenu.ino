@@ -47,10 +47,17 @@ void UIMenu(void){
         }
 
         /* Show Menu ID */
+        char menuTitle[6][11] = {
+                "GPS", "SAT.TRACK", "DEVI.MAP",
+                "DIGI.COMP", "ALTI.GRAPH", "SYS.INFO"
+        };
+        int strLen, xCursor;
+        strLen = 6*strlen(menuTitle[menu.tab]);
+        xCursor = 128 - strLen;
         display.setTextSize(1);
         display.setTextColor(WHITE);
-        display.setCursor(122, 54);
-        display.print(menu.tab);
+        display.setCursor(xCursor, 51);
+        display.print(menuTitle[menu.tab]);
 
         /* Draw Menu Icons */
         display.drawBitmap(4, 4, menuGPS, 24, 24, 1);
@@ -59,11 +66,10 @@ void UIMenu(void){
         display.drawBitmap(100, 4, menuCompass, 24, 24, 1);
         display.drawBitmap(4, 36, menuAltimeter, 24, 24, 1);
         display.drawBitmap(36, 36, menuHardware, 24, 24, 1);
-        display.drawRoundRect(64, 32, 32, 32, 3, BLACK); /* Clear Error Rect */
         display.drawRoundRect(menu.iconX, menu.iconY, 32, 32, 3, WHITE);
         display.display();
         /* Clear ID Char */
-        display.fillRect(122, 54, 5, 7, BLACK);
+        display.fillRect(xCursor, 51, strLen, 7, BLACK);
 
         while (menu.switchMenu) {
                 switch (menu.tab) {
