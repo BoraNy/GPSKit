@@ -8,7 +8,7 @@ void DeviationMap(void) {
   display.setCursor(62, 57); display.print('S');
 
   /* Show Update Satellite Icon */
-  display.fillRect(115, 0, 13, 7, BLACK);
+  display.fillRect(115, 0, 60, 7, BLACK);
   if (gps_var.show_question_mark)
     display.drawBitmap(115, 0, mini_satellite_icon, 13, 7, 1);
   else
