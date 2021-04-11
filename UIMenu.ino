@@ -42,9 +42,7 @@ void UIMenu(void){
         display.drawRoundRect(64, 32, 32, 32, 3, BLACK); /* Clear Error Rect */
         display.drawRoundRect(menu.iconX, menu.iconY, 32, 32, 3, WHITE);
         display.display();
-
-        decodeGPSNMEA(1000);
-
+        
         while (menu.switchMenu) {
                 switch (menu.tab) {
                 case 0:
