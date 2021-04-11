@@ -46,6 +46,12 @@ void UIMenu(void){
                         menu.tab = 5;
         }
 
+        /* Show Menu ID */
+        display.setTextSize(1);
+        display.setTextColor(WHITE);
+        display.setCursor(122, 54);
+        display.print(menu.tab);
+
         /* Draw Menu Icons */
         display.drawBitmap(4, 4, menuGPS, 24, 24, 1);
         display.drawBitmap(36, 4, menuSatellite, 24, 24, 1);
@@ -56,6 +62,8 @@ void UIMenu(void){
         display.drawRoundRect(64, 32, 32, 32, 3, BLACK); /* Clear Error Rect */
         display.drawRoundRect(menu.iconX, menu.iconY, 32, 32, 3, WHITE);
         display.display();
+        /* Clear ID Char */
+        display.fillRect(122, 54, 5, 7, BLACK);
 
         while (menu.switchMenu) {
                 switch (menu.tab) {
