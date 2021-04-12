@@ -27,7 +27,7 @@ the location data will recover from EEPROM memory
 In case of the reception signal took too long the info screen will pop up
 and show how to get a better reception signal
 
-* **A Button** Press to select menu
-* **B Button** Press to switch between Menu Icons
-* **C Button** Press and Hold to show the reception signal duration from Satellites
+* **A Button** Press to switch to respected icon menu
+* **B Button** Press to switch to previous menu icon
+* **C Button** Press to switch to next menu icon
 
