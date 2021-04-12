@@ -1,4 +1,4 @@
-# GPS_Kit
+# GPS Kit
 
 For this GPS Kit contained a fully functional GNSS Receiver with Digital Compass
 
@@ -8,6 +8,10 @@ For this GPS Kit contained a fully functional GNSS Receiver with Digital Compass
 * LSM303DLHC 3D accelerometer and 3D magnetometer
 
 ## Features
+
+The location recovery will save automatically on start up once the GPS
+receiver connected to the satellites, In case of an accident power loss
+the location data will recover from EEPROM memory
 
 * Full Location Logging and Data from GNSS Data Encoding
 * Start Point Recovery
