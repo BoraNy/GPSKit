@@ -48,7 +48,7 @@ void UIMenu(void){
 
         /* Show Menu ID */
         char menuTitle[6][11] = {
-                "GPS", "SAT.TRACK", "DEVI.MAP",
+                "GPS.NAVI", "SAT.TRACK", "DEVI.MAP",
                 "DIGI.COMP", "ALTI.GRAPH", "SYS.INFO"
         };
         int strLen, xCursor;
