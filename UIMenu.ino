@@ -90,7 +90,6 @@ void UIMenu(void){
                         ShowMenuIcon(DEVIATION_MAP_ICON);
                         DeviationMap();
                         ButtonIO();
-                        display.clearDisplay();
                         break;
 
                 case 3:
