@@ -65,6 +65,6 @@ void ButtonIO(void) {
                 display.clearDisplay();
                 altitude_graph.x_increment = 0; // Reset Altitude Graph //
                 altitude_graph.drawMesh = true;
-                receptionSignalGraphMenu();
+                StartPointLog();
         }
 }

@@ -1,7 +1,7 @@
 void UIMenu(void){
         CButton(); /* Get C Button Input */
 
-        if((menu.iconX > 32) && (menu.iconY == 32)) {
+        if((menu.iconX > 64) && (menu.iconY == 32)) {
                 /* Move Icon Cursor to Home */
                 menu.iconX = 0;
                 menu.iconY = 0;
@@ -9,7 +9,7 @@ void UIMenu(void){
 
         if((menu.iconX < 0) && (menu.iconY == 0)) {
                 /* Move Icon Cursor to END */
-                menu.iconX = 32;
+                menu.iconX = 64;
                 menu.iconY = 32;
         }
 
@@ -44,12 +44,15 @@ void UIMenu(void){
                 }
                 if(menu.iconX == 32)
                         menu.tab = 5;
+                if(menu.iconX == 64)
+                        menu.tab = 6;
         }
 
         /* Show Menu ID */
-        char menuTitle[6][5] = {
+        char menuTitle[7][5] = {
                 "NAVI", "SAT", "DEVI",
-                "COMP", "ALTI", "SYS"
+                "COMP", "ALTI", "SYS",
+                "LOG"
         };
         int strLen, xCursor;
         strLen = 6*strlen(menuTitle[menu.tab]);
@@ -66,6 +69,7 @@ void UIMenu(void){
         display.drawBitmap(100, 4, menuCompass, 24, 24, 1);
         display.drawBitmap(4, 36, menuAltimeter, 24, 24, 1);
         display.drawBitmap(36, 36, menuHardware, 24, 24, 1);
+        display.drawBitmap(68, 36, menuLog, 24, 24, 1);
         display.drawRoundRect(menu.iconX, menu.iconY, 32, 32, 3, WHITE);
         display.display();
         /* Clear ID Char */
@@ -109,6 +113,10 @@ void UIMenu(void){
                         ShowMenuIcon(HARDWARE_ICON);
                         InfoMenu();
                         ButtonIO();
+                        break;
+
+                case 6:
+                        LogMenu();
                         break;
                 }
         }
