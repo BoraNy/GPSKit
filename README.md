@@ -31,3 +31,7 @@ and show how to get a better reception signal
 * **B Button** Press to switch to previous menu icon
 * **C Button** Press to switch to next menu icon
 
+## Log Menu
+* Press and Hold C Button to Log Current Location to memory
+* Press and Hold B Button to clear Location in memory
+
