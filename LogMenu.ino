@@ -5,6 +5,7 @@ void LogMenu(void){
         if(index > 5)
                 index = 0;
 
+        /* Clear Current Location to Memory */
         if(!digitalRead(C_Pin)) {
                 static unsigned long last_interrupt_time = 0;
                 if (millis() - last_interrupt_time > 200) {
@@ -13,6 +14,15 @@ void LogMenu(void){
                         index++;
                 }
                 last_interrupt_time = millis(); /* Update Interrupt Time */
+        }
+
+        /* Clear Location Memory */
+        while(!digitalRead(B_Pin)){
+          for(int i = 0; i < 6; i++){
+            latMem[i] = 0;
+            lngMem[i] = 0;
+          }
+          break;
         }
 
         display.clearDisplay();
