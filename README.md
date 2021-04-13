@@ -1,4 +1,4 @@
-# GPS_Kit
+# GPS Kit
 
 For this GPS Kit contained a fully functional GNSS Receiver with Digital Compass
 
@@ -8,6 +8,10 @@ For this GPS Kit contained a fully functional GNSS Receiver with Digital Compass
 * LSM303DLHC 3D accelerometer and 3D magnetometer
 
 ## Features
+
+The location recovery will save automatically on start up once the GPS
+receiver connected to the satellites, In case of an accident power loss
+the location data will recover from EEPROM memory
 
 * Full Location Logging and Data from GNSS Data Encoding
 * Start Point Recovery
@@ -23,7 +27,7 @@ For this GPS Kit contained a fully functional GNSS Receiver with Digital Compass
 In case of the reception signal took too long the info screen will pop up
 and show how to get a better reception signal
 
-* **A Button** Press to select menu
-* **B Button** Press to switch between Menu Icons
-* **C Button** Press and Hold to show the reception signal duration from Satellites
+* **A Button** Press to switch to respected icon menu
+* **B Button** Press to switch to previous menu icon
+* **C Button** Press to switch to next menu icon
 
