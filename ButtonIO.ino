@@ -1,11 +1,12 @@
 void BButtonISR(void) {
         static unsigned long last_interrupt_time = 0;
-        if (millis() - last_interrupt_time > 200) {
-                menu.iconX -= 32;
-                menu.newTabFlag = true;
+        if (menu.switchMenu == false) {
+                if (millis() - last_interrupt_time > 200) {
+                        menu.iconX -= 32;
+                        menu.newTabFlag = true;
+                }
+                last_interrupt_time = millis(); /* Update Interrupt Time */
         }
-        last_interrupt_time = millis(); /* Update Interrupt Time */
-
         /* Clear Old Rectangle */
         display.drawRoundRect(menu.iconX + 32, menu.iconY, 32, 32, 3, BLACK);
 }
