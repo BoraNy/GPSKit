@@ -27,9 +27,15 @@ the location data will recover from EEPROM memory
 In case of the reception signal took too long the info screen will pop up
 and show how to get a better reception signal
 
-* **A Button** Press to switch to respected icon menu
-* **B Button** Press to switch to previous menu icon
-* **C Button** Press to switch to next menu icon
+## Button Function in Home Menu
+  * **A Button** Press to switch to respected icon menu
+  * **B Button** Press to switch to previous menu icon
+  * **C Button** Press to switch to next menu icon
+
+## Button Function in Menu
+  * **A Button** Press to switch to main menu
+  * **B Button** Press to switch to sub Menu 1
+  * **C Button** Press to switch to sub Menu 2
 
 ## Log Menu
 * Press and Hold C Button to Log Current Location to memory
