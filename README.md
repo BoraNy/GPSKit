@@ -36,6 +36,7 @@ and show how to get a better reception signal
 * Press and Hold B Button to clear Location in memory
 
 ## Git Commands
+* **git push -f origin [branch]** force push file to repository case repository conflict 
 * **git init** Start local folder as new repository
 * **git remote add [link]** get project origin from github to current directory
 * **git pull** get files from github to current folder
