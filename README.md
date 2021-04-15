@@ -38,8 +38,8 @@ and show how to get a better reception signal
   * **C Button** Press to switch to sub Menu 2
 
 ## Log Menu
-* Press and Hold C Button to Log Current Location to memory
-* Press and Hold B Button to clear Location in memory
+* Press and Hold **C Button** to Log Current Location to memory
+* Press and Hold **B Button** to clear Location in memory
 
 ## Git Commands
 * **git push -f origin [branch]** force push file to repository case repository conflict 
