@@ -52,16 +52,6 @@ void ButtonIO(void) {
                 display.display();
         }
 
-        /*
-           // Switch to Start Point Logging //
-           while (!digitalRead(A_Pin)) {
-                display.clearDisplay();
-                altitude_graph.x_increment = 0; // Reset Altitude Graph //
-                altitude_graph.drawMesh = true;
-                StartPointLog();
-           }
-         */
-
         // Switch to GPS Recption Menu //
         while (!digitalRead(C_Pin)) {
                 display.clearDisplay();

@@ -77,10 +77,10 @@ void setup() {
         /* SoftwareSerial Setup & Init all the uninitialized TinyGPSCustom objects */
         ss.begin(9600);
         for (int i = 0; i < 4; ++i) {
-                satNumber[i].begin(gps, "GPGSV", 4 + 4 * i); /* offsets 4, 8, 12, 16 */
-                elevation[i].begin(gps, "GPGSV", 5 + 4 * i); /* offsets 5, 9, 13, 17 */
-                azimuth[i].begin(gps, "GPGSV", 6 + 4 * i); /* offsets 6, 10, 14, 18 */
-                snr[i].begin(gps, "GPGSV", 7 + 4 * i); /* offsets 7, 11, 15, 19 */
+                satNumber[i].begin(gps, "GPGSV", 4 + 4 * i);  /* offsets 4, 8, 12, 16 */
+                elevation[i].begin(gps, "GPGSV", 5 + 4 * i);  /* offsets 5, 9, 13, 17 */
+                azimuth[i].begin(gps, "GPGSV", 6 + 4 * i);    /* offsets 6, 10, 14, 18 */
+                snr[i].begin(gps, "GPGSV", 7 + 4 * i);        /* offsets 7, 11, 15, 19 */
         }
         display.setCursor(1, 21);
         display.setTextColor(WHITE);
