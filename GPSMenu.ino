@@ -85,8 +85,7 @@ void GPSMenu(void) {
                     && (gps.location.lng() > 0)) {
                         gps_var.start_latitude = gps.location.lat();
                         gps_var.start_longitude = gps.location.lng();
-                        gps_var.log_start_point = true; /* Stop Logging after completed */
-
+                        
                         /* Save Location to EEPROM */
                         saveLocationToEEPROM();
 
