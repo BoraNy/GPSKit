@@ -31,6 +31,13 @@ void WaypointMenu(void)
         display.setCursor(1, 1);
         display.print('x'); display.print(waypoint.scale);
 
+        if (gps.satellites.value() == 0) {
+                display.fillRect(42, 28, 43, 9, WHITE);
+                display.setTextColor(BLACK);
+                display.setCursor(43, 29);
+                display.print(F("NO DATA"));
+        }
+
         /* Get Current Coordinate */
         waypoint.x_now = long(gps.location.lat() * 1e6);
         waypoint.y_now = long(gps.location.lng() * 1e6);
