@@ -22,6 +22,7 @@ void LogMenu(void){
             latMem[i] = 0;
             lngMem[i] = 0;
           }
+          index = 0;
           break;
         }
 

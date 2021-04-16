@@ -20,6 +20,13 @@ typedef enum {
         HARDWARE_ICON = 3
 } ICON;
 
+/* WaypointMenu Variable */
+struct waypoint_s {
+        double x_start = 0, y_start = 0,
+               x_now = 0, y_now = 0;
+        int scale = 1;
+} waypoint;
+
 /* Deviation Map Variable */
 struct deviMap_s {
         double old_latitude = 0, old_longitude = 0, new_latitude = 0, new_longitude = 0;
@@ -58,6 +65,9 @@ struct altitude_graph_s {
         float altitude_indicator_old = 0, altitude_indicator_new = 0;
         bool show_altitude_menu = false;
 } altitude_graph;
+
+/* Static */
+static double static_start_latitude = 0, static_start_logitude = 0;
 
 /* GPS Menu Variable */
 struct gps_s {

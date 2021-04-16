@@ -1,7 +1,7 @@
 void UIMenu(void){
         CButton(); /* Get C Button Input */
 
-        if((menu.iconX > 64) && (menu.iconY == 32)) {
+        if((menu.iconX > 96) && (menu.iconY == 32)) {
                 /* Move Icon Cursor to Home */
                 menu.iconX = 0;
                 menu.iconY = 0;
@@ -9,7 +9,7 @@ void UIMenu(void){
 
         if((menu.iconX < 0) && (menu.iconY == 0)) {
                 /* Move Icon Cursor to END */
-                menu.iconX = 64;
+                menu.iconX = 96;
                 menu.iconY = 32;
         }
 
@@ -46,21 +46,9 @@ void UIMenu(void){
                         menu.tab = 5;
                 if(menu.iconX == 64)
                         menu.tab = 6;
+                if(menu.iconX == 96)
+                        menu.tab = 7;
         }
-
-        /* Show Menu ID */
-        char menuTitle[7][5] = {
-                "NAVI", "SAT", "DEVI",
-                "COMP", "ALTI", "SYS",
-                "LOG"
-        };
-        int strLen, xCursor;
-        strLen = 6*strlen(menuTitle[menu.tab]);
-        xCursor = 128 - strLen;
-        display.setTextSize(1);
-        display.setTextColor(WHITE);
-        display.setCursor(xCursor, 51);
-        display.print(menuTitle[menu.tab]);
 
         /* Draw Menu Icons */
         display.drawBitmap(4, 4, menuGPS, 24, 24, 1);
@@ -70,10 +58,10 @@ void UIMenu(void){
         display.drawBitmap(4, 36, menuAltimeter, 24, 24, 1);
         display.drawBitmap(36, 36, menuHardware, 24, 24, 1);
         display.drawBitmap(68, 36, menuLog, 24, 24, 1);
+        display.drawBitmap(100, 36, menuNavigation, 24, 24, 1);
+
         display.drawRoundRect(menu.iconX, menu.iconY, 32, 32, 3, WHITE);
         display.display();
-        /* Clear ID Char */
-        display.fillRect(xCursor, 51, strLen, 7, BLACK);
 
         while (menu.switchMenu) {
                 switch (menu.tab) {
@@ -117,6 +105,10 @@ void UIMenu(void){
 
                 case 6:
                         LogMenu();
+                        break;
+
+                case 7:
+                        WaypointMenu();
                         break;
                 }
         }

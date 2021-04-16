@@ -27,6 +27,7 @@ void GPSMenu(void);
 void InfoMenu(void);
 void SatelliteTracker(void);
 void StartPointLog(void);
+void WaypointMenu(void);
 
 /* Create Objects from Classes */
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire);
