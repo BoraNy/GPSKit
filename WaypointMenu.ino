@@ -5,9 +5,6 @@ void WaypointMenu(void)
          */
 
         display.clearDisplay();
-        display.setTextSize(1);
-        display.setTextColor(WHITE);
-        display.setCursor(1, 1);
 
         /* Read Button to Adjust Scale */
         if(!digitalRead(B_Pin)) {
@@ -28,6 +25,11 @@ void WaypointMenu(void)
         /* Limit Value */
         if(waypoint.scale > 50) waypoint.scale = 50;
         if(waypoint.scale < 5) waypoint.scale = 5;
+
+        display.setTextSize(1);
+        display.setTextColor(WHITE);
+        display.setCursor(1, 1);
+        display.print('x'); display.print(waypoint.scale);
 
         /* Get Current Coordinate */
         waypoint.x_now = long(gps.location.lat() * 1e6);
