@@ -56,7 +56,7 @@ void CompassMenu(void) {
         int r = 20;
 
         /* Indicator */
-        display.fillCircle(4, 15, 2, WHITE);
+        display.fillCircle(5, 15, 2, WHITE);
         display.setCursor(3, 20); display.print('N');
 
         /* Pointing North */
