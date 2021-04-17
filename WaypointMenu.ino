@@ -105,8 +105,8 @@ void WaypointMenu(void)
 
         /* Get Distance Between Waypoints */
         waypoint.distance_between_waypoints = gps.distanceBetween(
-                waypoint.x_start, waypoint.y_start,
-                waypoint.x_now, waypoint.y_now
+                waypoint.x_start / 1e6, waypoint.y_start / 1e6,
+                waypoint.x_now / 1e6, waypoint.y_now / 1e6
                 );
 
         /* Get Current Coordinate */
