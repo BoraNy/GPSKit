@@ -24,6 +24,8 @@ the location data will recover from EEPROM memory
 
 ## Usage & Info
 
+* **Using Waypoint Menu** Go to **LOG** Menu to say Waypoint, Exit and go back to **NAVI** and select Waypoint from Index 0-5 to show way point on **NAVI** menu
+
 In case of the reception signal took too long the info screen will pop up
 and show how to get a better reception signal
 
@@ -42,7 +44,7 @@ and show how to get a better reception signal
 * Press and Hold **B Button** to clear Location in memory
 
 ## Git Commands
-* **git push -f origin [branch]** force push file to repository case repository conflict 
+* **git push -f origin [branch]** force push file to repository case repository conflict
 * **git init** Start local folder as new repository
 * **git remote add [link]** get project origin from github to current directory
 * **git pull** get files from github to current folder
