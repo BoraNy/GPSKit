@@ -44,9 +44,9 @@ void InfoMenu(void) {
   /* Hardware Info */
   display.setCursor(1, 29); display.print(F("PASSED CKSM:"));
   display.print(gps.passedChecksum());
-  display.setCursor(1, 38); display.print(F("FLASH:20% RAM:28%"));
+  display.setCursor(1, 38); display.print(F("FLASH:21% RAM:28%"));
   display.setCursor(1, 47); display.print(F("EEPROM:0.19%"));
-  display.setCursor(1, 56); display.print(F("Version:16.042021"));
+  display.setCursor(1, 56); display.print(F("Version:17.042021"));
   display.display();
   display.clearDisplay();
 

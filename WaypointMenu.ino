@@ -26,10 +26,6 @@ void WaypointMenu(void)
         if(waypoint.scale > 50) waypoint.scale = 50;
         if(waypoint.scale < 5) waypoint.scale = 5;
 
-        display.setTextSize(1);
-        display.setTextColor(WHITE);
-        display.setCursor(1, 1);
-        display.print('x'); display.print(waypoint.scale);
 
         if (gps.satellites.value() == 0) {
                 display.fillRect(42, 28, 43, 9, WHITE);
@@ -38,7 +34,19 @@ void WaypointMenu(void)
                 display.print(F("NO DATA"));
         }
 
+        /* Get Distance Between Waypoints */
+        waypoint.distance_between_waypoints = gps.distanceBetween(
+                waypoint.x_start, waypoint.y_start,
+                waypoint.x_now, waypoint.y_now
+                );
+
         /* Get Current Coordinate */
+        display.setTextSize(1);
+        display.setTextColor(WHITE);
+        display.setCursor(1, 1);
+        display.print('x'); display.print(waypoint.scale);
+        display.print(','); display.print(waypoint.distance_between_waypoints);
+
         waypoint.x_now = long(gps.location.lat() * 1e6);
         waypoint.y_now = long(gps.location.lng() * 1e6);
 

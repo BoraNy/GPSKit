@@ -8,6 +8,7 @@
 #include <SoftwareSerial.h>
 #include <TinyGPS++.h>
 #include <dhtnew.h>
+#include <string.h>
 #include <math.h>
 
 /* Function Prototypes */

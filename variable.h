@@ -24,6 +24,7 @@ typedef enum {
 struct waypoint_s {
         double x_start = 0, y_start = 0,
                x_now = 0, y_now = 0;
+        double distance_between_waypoints = 0;
         int scale = 1;
 } waypoint;
 
