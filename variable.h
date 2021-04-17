@@ -22,6 +22,7 @@ typedef enum {
 
 /* WaypointMenu Variable */
 struct waypoint_s {
+        bool isStartUp = true;
         double x_start = 0, y_start = 0,
                x_now = 0, y_now = 0;
         double distance_between_waypoints = 0;

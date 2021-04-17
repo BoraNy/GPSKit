@@ -29,6 +29,8 @@ void InfoMenu(void);
 void SatelliteTracker(void);
 void StartPointLog(void);
 void WaypointMenu(void);
+void writeToEEPROM(int address, double value);
+double decodeFromEEPROM(int address);
 
 /* Create Objects from Classes */
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire);
