@@ -46,8 +46,10 @@ void UIMenu(void){
                         menu.tab = 5;
                 if(menu.iconX == 64)
                         menu.tab = 6;
-                if(menu.iconX == 96)
+                if(menu.iconX == 96) {
+                        waypoint.isStartUp = true;
                         menu.tab = 7;
+                }
         }
 
         /* Draw Menu Icons */

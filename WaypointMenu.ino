@@ -4,7 +4,77 @@ void WaypointMenu(void)
            Longitude Min/Max: -180 -> 180
          */
 
+        /* Get Waypoint From EEPROM */
+        if(waypoint.isStartUp) {
+                while(true) {
+                        display.clearDisplay();
+                        display.setTextSize(1);
+                        display.setTextColor(BLACK);
+                        display.fillRect(0, 0, 128, 9, WHITE);
+                        display.setCursor(1, 1);
+                        display.print(F("SELECT WAYPOINT"));
+
+                        display.setTextColor(WHITE);
+                        display.setCursor(1, 29);
+                        display.print(F("WAYPOINT: "));
+                        display.print(waypoint.waypoint_select);
+                        display.setCursor(1, 56);
+                        display.print(F("PRESS (B) TO SELECT"));
+                        display.display();
+
+                        if (waypoint.waypoint_select > 5) waypoint.waypoint_select = 0;
+
+                        /* Get Waypoint ID */
+                        static unsigned long last_interrupt_time = 0;
+                        if (!digitalRead(C_Pin)) {
+                                if (millis() - last_interrupt_time > 200) {
+                                        waypoint.waypoint_select++;
+                                }
+                                last_interrupt_time = millis(); /* Update Interrupt Time */
+                        }
+
+                        /* Get Coordinate From EERPROM */
+                        if(!digitalRead(B_Pin)) {
+                                if (millis() - last_interrupt_time > 200) {
+                                        last_interrupt_time = millis(); /* Update Interrupt Time */
+                                        /* Read Latitude */
+                                        waypoint.x_start = decodeFromEEPROM(
+                                                waypoint.waypoint_memory_address[waypoint.waypoint_select]);
+                                        /* Read Longitude */
+                                        waypoint.y_start = decodeFromEEPROM(
+                                                waypoint.waypoint_memory_address[waypoint.waypoint_select] + 6
+                                                );
+
+                                        display.clearDisplay();
+                                        display.fillRect(0, 0, 128, 9, WHITE);
+                                        display.setTextColor(BLACK);
+                                        display.setCursor(1, 1);
+                                        display.print(F("WAYPOINT"));
+                                        display.setTextColor(WHITE);
+                                        display.setCursor(1, 29);
+                                        display.print(waypoint.x_start, 6);
+                                        display.print(',');
+                                        display.print(waypoint.y_start, 6);
+                                        display.display();
+                                        delay(3000);
+
+                                        waypoint.x_start = long(static_start_latitude * 1e6);
+                                        waypoint.y_start = long(static_start_logitude * 1e6);
+
+
+                                        /* End Select Waypoint */
+                                        waypoint.isStartUp = false;
+
+                                        /* Exit Loop */
+                                        break;
+                                }
+                        }
+                }
+        }
+
         display.clearDisplay();
+
+        decodeGPSNMEA(1000);
 
         /* Read Button to Adjust Scale */
         if(!digitalRead(B_Pin)) {
@@ -50,11 +120,6 @@ void WaypointMenu(void)
         waypoint.x_now = long(gps.location.lat() * 1e6);
         waypoint.y_now = long(gps.location.lng() * 1e6);
 
-        /* Get Coordinate from start point */
-        waypoint.x_start = long(static_start_latitude * 1e6);
-        waypoint.y_start = long(static_start_logitude * 1e6);
-
-
         /* Map Value to Fit the Screen */
         waypoint.x_now = map(waypoint.x_now, -90*1e6, 90*1e6, 5, 128);
         waypoint.y_now = map(waypoint.y_now, -180*1e6, 180*1e6, 5, 64);
@@ -78,5 +143,4 @@ void WaypointMenu(void)
                          waypoint.x_now, waypoint.y_now, WHITE);
 
         display.display();
-        decodeGPSNMEA(1000);
 }
