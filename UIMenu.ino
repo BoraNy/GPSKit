@@ -111,6 +111,7 @@ void UIMenu(void){
 
                 case 7:
                         WaypointMenu();
+                        display.clearDisplay();
                         break;
                 }
         }
