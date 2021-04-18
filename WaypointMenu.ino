@@ -49,18 +49,16 @@ void WaypointMenu(void)
                                         display.fillRect(0, 0, 128, 9, WHITE);
                                         display.setTextColor(BLACK);
                                         display.setCursor(1, 1);
-                                        display.print(F("WAYPOINT"));
+                                        display.print(F("SELECTED WAYPOINT: "));
+                                        display.print(waypoint.waypoint_select);
                                         display.setTextColor(WHITE);
+
                                         display.setCursor(1, 29);
                                         display.print(waypoint.x_start, 6);
                                         display.print(',');
                                         display.print(waypoint.y_start, 6);
                                         display.display();
                                         delay(3000);
-
-                                        waypoint.x_start = long(static_start_latitude * 1e6);
-                                        waypoint.y_start = long(static_start_logitude * 1e6);
-
 
                                         /* End Select Waypoint */
                                         waypoint.isStartUp = false;
@@ -78,21 +76,21 @@ void WaypointMenu(void)
         if(!digitalRead(B_Pin)) {
                 static unsigned long last_interrupt_time = 0;
                 if (millis() - last_interrupt_time > 200) {
-                        waypoint.scale -= 1;
+                        waypoint.scale *= 1e-1;
                 }
                 last_interrupt_time = millis(); /* Update Interrupt Time */
         }
         if(!digitalRead(C_Pin)) {
                 static unsigned long last_interrupt_time = 0;
                 if (millis() - last_interrupt_time > 200) {
-                        waypoint.scale += 1;
+                        waypoint.scale++;
                 }
                 last_interrupt_time = millis(); /* Update Interrupt Time */
         }
 
         /* Limit Value */
         if(waypoint.scale > 10) waypoint.scale = 10;
-        if(waypoint.scale < 1) waypoint.scale = 1;
+        if(waypoint.scale < 0.00001) waypoint.scale = 0.00001;
 
         if (gps.satellites.value() == 0) {
                 display.fillRect(42, 28, 43, 9, WHITE);
@@ -101,44 +99,43 @@ void WaypointMenu(void)
                 display.print(F("NO DATA"));
         }
 
-        /* Get Distance Between Waypoints */
+        /* Get Distance and Course Between Waypoints */
         waypoint.distance_between_waypoints = gps.distanceBetween(
-                waypoint.x_start / 1e6, waypoint.y_start / 1e6,
-                waypoint.x_now / 1e6, waypoint.y_now / 1e6
+                waypoint.x_start, waypoint.y_start,
+                waypoint.x_now, waypoint.y_now
+                );
+        waypoint.course_to_waypoint = gps.courseTo(
+                waypoint.x_start, waypoint.y_start,
+                waypoint.x_now, waypoint.y_now
                 );
 
+        /* Reduce Distance Scale */
+        waypoint.distance_between_waypoints = waypoint.distance_between_waypoints * waypoint.scale;
+
         /* Get Current Coordinate */
-        waypoint.x_now = long(gps.location.lat() * 1e6);
-        waypoint.y_now = long(gps.location.lng() * 1e6);
-
-        /* Map Value to Fit the Screen */
-        waypoint.x_now = map(waypoint.x_now, -90*1e6, 90*1e6, 5, 128);
-        waypoint.y_now = map(waypoint.y_now, -180*1e6, 180*1e6, 5, 64);
-
-        waypoint.x_start = map(waypoint.x_start, -90*1e6, 90*1e6, 5, 128);
-        waypoint.y_start = map(waypoint.y_start, -180*1e6, 180*1e6, 5, 64);
-
-        waypoint.x_now = waypoint.x_now * waypoint.scale;
-        waypoint.y_now = waypoint.y_now * waypoint.scale;
-        waypoint.x_start = waypoint.x_start * waypoint.scale;
-        waypoint.y_start = waypoint.y_start * waypoint.scale;
+        waypoint.x_now = gps.location.lat();
+        waypoint.y_now = gps.location.lng();
 
         display.clearDisplay();
         display.setTextSize(1);
         display.setTextColor(WHITE);
         display.setCursor(1, 1);
-        display.print('x'); display.print(waypoint.scale);
-        display.print(','); display.print(waypoint.distance_between_waypoints);
+        display.print('x'); display.print(waypoint.scale, 5);
+        display.setCursor(1, 56);
+        display.print(waypoint.distance_between_waypoints);
         display.print('m');
 
         /* Draw Home Mark */
-        display.drawBitmap(waypoint.x_start + 64, waypoint.y_start, navFlag, 10, 10, 1);
+        display.drawBitmap(64 + (waypoint.distance_between_waypoints * cos(waypoint.course_to_waypoint * RAD_TO_DEG)),
+                           32 + (waypoint.distance_between_waypoints * sin(waypoint.course_to_waypoint * RAD_TO_DEG)), navFlag, 10, 10, 1);
 
         /* Draw Current Pos Mark */
-        display.drawBitmap(waypoint.x_now + 64, waypoint.y_now, navCurrentPos, 10, 10, 1);
+        display.drawBitmap(59, 27, navCurrentPos, 10, 10, 1);
 
         /* Draw Line */
-        display.drawLine(waypoint.x_start + 64, waypoint.y_start,
-                         waypoint.x_now + 64, waypoint.y_now, WHITE);
+        display.drawLine(64, 32,
+                         64 + (waypoint.distance_between_waypoints * cos(waypoint.course_to_waypoint * RAD_TO_DEG)),
+                         32 + (waypoint.distance_between_waypoints * sin(waypoint.course_to_waypoint * RAD_TO_DEG)), WHITE);
+
         display.display();
 }

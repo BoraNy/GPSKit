@@ -27,8 +27,8 @@ struct waypoint_s {
         bool isStartUp = true;
         double x_start = 0, y_start = 0,
                x_now = 0, y_now = 0;
-        double distance_between_waypoints = 0;
-        int scale = 1;
+        double distance_between_waypoints = 0, course_to_waypoint = 0;
+        float scale = 1;
 } waypoint;
 
 /* Deviation Map Variable */
