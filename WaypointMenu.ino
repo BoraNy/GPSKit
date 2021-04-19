@@ -90,7 +90,7 @@ void WaypointMenu(void)
 
         /* Limit Value */
         if(waypoint.scale > 10) waypoint.scale = 10;
-        if(waypoint.scale < 0.00001) waypoint.scale = 0.00001;
+        if(waypoint.scale < 0.0000000001) waypoint.scale = 0.0000000001;
 
         if (gps.satellites.value() == 0) {
                 display.fillRect(42, 28, 43, 9, WHITE);
@@ -120,7 +120,7 @@ void WaypointMenu(void)
         display.setTextSize(1);
         display.setTextColor(WHITE);
         display.setCursor(1, 1);
-        display.print('x'); display.print(waypoint.scale, 5);
+        display.print('x'); display.print(waypoint.scale, 10);
         display.setCursor(1, 56);
         display.print(waypoint.distance_between_waypoints);
         display.print('m');
