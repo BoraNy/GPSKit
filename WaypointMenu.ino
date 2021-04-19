@@ -1,7 +1,8 @@
 void WaypointMenu(void)
 {
-        /* Latitude Min/Max: -90 -> 90
-           Longitude Min/Max: -180 -> 180
+        /*
+            Latitude Min/Max: -90 -> 90
+            Longitude Min/Max: -180 -> 180
          */
 
         /* Get Waypoint From EEPROM */
@@ -132,7 +133,7 @@ void WaypointMenu(void)
         /* Draw Current Pos Mark */
         display.drawBitmap(59, 27, navCurrentPos, 10, 10, 1);
 
-        /* Draw Line */
+        /* Draw Line Between Two Way Points*/
         display.drawLine(64, 32,
                          64 + (waypoint.distance_between_waypoints * cos(waypoint.course_to_waypoint * RAD_TO_DEG)),
                          32 + (waypoint.distance_between_waypoints * sin(waypoint.course_to_waypoint * RAD_TO_DEG)), WHITE);
