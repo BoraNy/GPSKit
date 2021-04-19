@@ -6,7 +6,7 @@ void InfoMenu(void) {
   display.setTextSize(1);
   display.setTextColor(WHITE);
   display.setCursor(1, 1);
-  display.print("TIME ZONE: ");
+  display.print("TIME ZONE");
   display.setCursor(65, 1);
 
   /* UTC is not TimeZone, GMT is */
@@ -30,23 +30,26 @@ void InfoMenu(void) {
   /* Sun Rise Time */
   char sunRiseTime[6];
   Dusk2Dawn::min2str(sunRiseTime, sunRise);
-  display.setCursor(1, 10); display.print(F("SUNRISE:"));
-  display.print(sunRiseTime);
+  display.setCursor(1, 10);  display.print(F("SUNRISE"));
+  display.setCursor(64, 10); display.print(sunRiseTime);
 
   /* Sunset Time */
   char sunSetTime[6];
   Dusk2Dawn::min2str(sunSetTime, sunSet);
-  display.setCursor(1, 20); display.print(F("SUNSET:"));
-  display.print(sunSetTime);
+  display.setCursor(1, 20);  display.print(F("SUNSET"));
+  display.setCursor(64, 20); display.print(sunSetTime);
 
   display.drawBitmap(108, 12, sunrise_sunset_icon, 20, 13, 1); /* Draw Sunrise Sunset Icon */
 
   /* Hardware Info */
-  display.setCursor(1, 29); display.print(F("PASSED CKSM:"));
-  display.print(gps.passedChecksum());
-  display.setCursor(1, 38); display.print(F("FLASH:21% RAM:28%"));
-  display.setCursor(1, 47); display.print(F("EEPROM:0.19%"));
-  display.setCursor(1, 56); display.print(F("Version:17.042021"));
+  display.setCursor(1, 29);  display.print(F("FLASH")); 
+  display.setCursor(64, 29); display.print(F("21%"));
+  display.setCursor(1, 38);  display.print(F("RAM"));   
+  display.setCursor(64, 38); display.print(F("28%"));
+  display.setCursor(1, 47);  display.print(F("EEPROM")); 
+  display.setCursor(64, 47); display.print(F("1.70%"));
+  display.setCursor(1, 56);  display.print(F("Version"));
+  display.setCursor(64, 56); display.print(F("19.042021"));
   display.display();
   display.clearDisplay();
 
