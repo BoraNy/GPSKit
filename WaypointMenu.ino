@@ -77,6 +77,7 @@ void WaypointMenu(void)
                 static unsigned long last_interrupt_time = 0;
                 if (millis() - last_interrupt_time > 200) {
                         waypoint.scale *= 1e-1;
+                        waypoint.decimal_point++;
                 }
                 last_interrupt_time = millis(); /* Update Interrupt Time */
         }
@@ -84,11 +85,13 @@ void WaypointMenu(void)
                 static unsigned long last_interrupt_time = 0;
                 if (millis() - last_interrupt_time > 200) {
                         waypoint.scale++;
+                        waypoint.decimal_point = 0;
                 }
                 last_interrupt_time = millis(); /* Update Interrupt Time */
         }
 
         /* Limit Value */
+        if(waypoint.decimal_point > 10) waypoint.decimal_point = 0;
         if(waypoint.scale > 10) waypoint.scale = 10;
         if(waypoint.scale < 0.0000000001) waypoint.scale = 0.0000000001;
 
@@ -125,7 +128,21 @@ void WaypointMenu(void)
         display.setTextSize(1);
         display.setTextColor(WHITE);
         display.setCursor(1, 1);
-        display.print('x'); display.print(waypoint.scale, 10);
+        display.print('x');
+
+
+        if(waypoint.scale < 1)
+                display.print(waypoint.scale, waypoint.decimal_point);
+        else
+                display.print(waypoint.scale);
+
+        /* Show Date and Time */
+        display.setCursor(98, 1);
+        display.print(gps.time.hour() + getTimeZone(gps.location.lng()));
+        display.print(':');
+        if (gps.time.minute() < 10) display.print(F("0"));
+        display.print(gps.time.minute());
+
         display.setCursor(1, 56);
         display.print(waypoint.distance_between_waypoints);
         display.print(F("m "));
