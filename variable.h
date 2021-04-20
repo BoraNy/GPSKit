@@ -25,7 +25,8 @@ struct waypoint_s {
         int waypoint_memory_address[6] = { 10, 22, 34, 46, 58, 70 };
         int waypoint_select = 0;
         bool isStartUp = true;
-        double x_start = 0, y_start = 0,
+        long int screen_x = 0, screen_y = 0;
+        double x_goto_lat = 0, y_goto_lng = 0,
                x_now = 0, y_now = 0;
         double distance_between_waypoints = 0, course_to_waypoint = 0;
         float scale = 1;

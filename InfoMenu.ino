@@ -42,14 +42,14 @@ void InfoMenu(void) {
   display.drawBitmap(108, 12, sunrise_sunset_icon, 20, 13, 1); /* Draw Sunrise Sunset Icon */
 
   /* Hardware Info */
-  display.setCursor(1, 29);  display.print(F("FLASH")); 
+  display.setCursor(1, 29);  display.print(F("FLASH"));
   display.setCursor(64, 29); display.print(F("21%"));
-  display.setCursor(1, 38);  display.print(F("RAM"));   
+  display.setCursor(1, 38);  display.print(F("RAM"));
   display.setCursor(64, 38); display.print(F("28%"));
-  display.setCursor(1, 47);  display.print(F("EEPROM")); 
+  display.setCursor(1, 47);  display.print(F("EEPROM"));
   display.setCursor(64, 47); display.print(F("1.70%"));
   display.setCursor(1, 56);  display.print(F("VERSION"));
-  display.setCursor(64, 56); display.print(F("19.042021"));
+  display.setCursor(64, 56); display.print(F("20.042021"));
   display.display();
   display.clearDisplay();
 

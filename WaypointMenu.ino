@@ -39,10 +39,10 @@ void WaypointMenu(void)
                                 if (millis() - last_interrupt_time > 200) {
                                         last_interrupt_time = millis(); /* Update Interrupt Time */
                                         /* Read Latitude */
-                                        waypoint.x_start = decodeFromEEPROM(
+                                        waypoint.x_goto_lat = decodeFromEEPROM(
                                                 waypoint.waypoint_memory_address[waypoint.waypoint_select]);
                                         /* Read Longitude */
-                                        waypoint.y_start = decodeFromEEPROM(
+                                        waypoint.y_goto_lng = decodeFromEEPROM(
                                                 waypoint.waypoint_memory_address[waypoint.waypoint_select] + 6
                                                 );
 
@@ -55,11 +55,10 @@ void WaypointMenu(void)
                                         display.setTextColor(WHITE);
 
                                         display.setCursor(1, 29);
-                                        display.print(waypoint.x_start, 6);
+                                        display.print(waypoint.x_goto_lat, 6);
                                         display.print(',');
-                                        display.print(waypoint.y_start, 6);
+                                        display.print(waypoint.y_goto_lng, 6);
                                         display.display();
-                                        delay(3000);
 
                                         /* End Select Waypoint */
                                         waypoint.isStartUp = false;
@@ -100,22 +99,27 @@ void WaypointMenu(void)
                 display.print(F("NO DATA"));
         }
 
+        /* Get Current Coordinate */
+        waypoint.x_now = gps.location.lat();
+        waypoint.y_now = gps.location.lng();
+
         /* Get Distance and Course Between Waypoints */
         waypoint.distance_between_waypoints = gps.distanceBetween(
-                waypoint.x_start, waypoint.y_start,
+                waypoint.x_goto_lat, waypoint.y_goto_lng,
                 waypoint.x_now, waypoint.y_now
                 );
         waypoint.course_to_waypoint = gps.courseTo(
-                waypoint.x_start, waypoint.y_start,
+                waypoint.x_goto_lat, waypoint.y_goto_lng,
                 waypoint.x_now, waypoint.y_now
                 );
 
         /* Reduce Distance Scale */
         waypoint.distance_between_waypoints = waypoint.distance_between_waypoints * waypoint.scale;
 
-        /* Get Current Coordinate */
-        waypoint.x_now = gps.location.lat();
-        waypoint.y_now = gps.location.lng();
+        /* Calculate Endpoint Coordinate on Screen */
+        waypoint.course_to_waypoint = 360 - waypoint.course_to_waypoint;
+        waypoint.screen_x = 64 + waypoint.distance_between_waypoints * cos(waypoint.course_to_waypoint * M_PI / 180);
+        waypoint.screen_y = 32 + waypoint.distance_between_waypoints * sin(waypoint.course_to_waypoint * M_PI / 180);
 
         display.clearDisplay();
         display.setTextSize(1);
@@ -124,19 +128,16 @@ void WaypointMenu(void)
         display.print('x'); display.print(waypoint.scale, 10);
         display.setCursor(1, 56);
         display.print(waypoint.distance_between_waypoints);
-        display.print('m');
+        display.print(F("m "));
+        display.print(360 - waypoint.course_to_waypoint);
+        display.print(F("DEG"));
 
-        /* Draw Home Mark */
-        display.drawBitmap(64 + (waypoint.distance_between_waypoints * cos(waypoint.course_to_waypoint * RAD_TO_DEG)),
-                           32 + (waypoint.distance_between_waypoints * sin(waypoint.course_to_waypoint * RAD_TO_DEG)), navFlag, 10, 10, 1);
-
-        /* Draw Current Pos Mark */
+        /* Draw Current Pos BMP */
         display.drawBitmap(59, 27, navCurrentPos, 10, 10, 1);
+        display.drawBitmap((waypoint.screen_x - 2), (waypoint.screen_y - 11), navFlag, 10, 10, 1);
 
-        /* Draw Line Between Two Way Points*/
-        display.drawLine(64, 32,
-                         64 + (waypoint.distance_between_waypoints * cos(waypoint.course_to_waypoint * RAD_TO_DEG)),
-                         32 + (waypoint.distance_between_waypoints * sin(waypoint.course_to_waypoint * RAD_TO_DEG)), WHITE);
+        /* Draw Line from current point to Way point */
+        display.drawLine(64, 32, waypoint.screen_x, waypoint.screen_y, WHITE);
 
         display.display();
 }
