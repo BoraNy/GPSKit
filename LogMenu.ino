@@ -2,6 +2,31 @@ void LogMenu(void){
         static float latMem[6], lngMem[6];
         static int index = 0, writeMemoryAddress = 10;
 
+        /* Decode 6 Coordinates from EEPROM */
+        if(waypoint.isStartUp) {
+                display.clearDisplay();
+                display.setCursor(1, 1);
+                display.setTextSize(1);
+                display.setTextColor(WHITE);
+                display.print(F("DECODING EEPROM..."));
+                display.display();
+
+                writeMemoryAddress = 10;
+                index = 0;
+                for(int i = 0; i < 6; i++) {
+                        latMem[index] = decodeFromEEPROM(writeMemoryAddress);
+                        writeMemoryAddress += 6;
+                        delay(10);
+                        lngMem[index] = decodeFromEEPROM(writeMemoryAddress);
+                        writeMemoryAddress += 6;
+                        delay(10);
+                        index++;
+                }
+                waypoint.isStartUp = false;
+                writeMemoryAddress = 10;
+                index = 0;
+        }
+
         display.clearDisplay();
         display.setTextSize(1);
         display.setTextColor(WHITE);
@@ -28,8 +53,49 @@ void LogMenu(void){
 
         /* Clear Current Location to Memory */
         if(!digitalRead(C_Pin)) {
+                display.setTextSize(1);
+                display.setTextColor(WHITE);
                 static unsigned long last_interrupt_time = 0;
                 if (millis() - last_interrupt_time > 200) {
+                        switch (index) {
+                          case 0:
+                            display.fillRect(1, 1, 128, 9, BLACK);
+                            display.setCursor(1, 1);
+                            display.print(F("WRITING...  "));
+                            display.print(index);
+                            break;
+                          case 1:
+                            display.fillRect(1, 11, 128, 9, BLACK);
+                            display.setCursor(1, 11);
+                            display.print(F("WRITING...  "));
+                            display.print(index);
+                            break;
+                          case 2:
+                            display.fillRect(1, 21, 128, 9, BLACK);
+                            display.setCursor(1, 21);
+                            display.print(F("WRITING...  "));
+                            display.print(index);
+                            break;
+                          case 3:
+                            display.fillRect(1, 31, 128, 9, BLACK);
+                            display.setCursor(1, 31);
+                            display.print(F("WRITING...  "));
+                            display.print(index);
+                            break;
+                          case 4:
+                            display.fillRect(1, 41, 128, 9, BLACK);
+                            display.setCursor(1, 41);
+                            display.print(F("WRITING...  "));
+                            display.print(index);
+                            break;
+                          case 5:
+                            display.fillRect(1, 51, 128, 9, BLACK);
+                            display.setCursor(1, 51);
+                            display.print(F("WRITING...  "));
+                            display.print(index);
+                            break;
+                        }
+                        display.display();
                         latMem[index] = gps.location.lat();
                         lngMem[index] = gps.location.lng();
                         writeToEEPROM(writeMemoryAddress, latMem[index]);
@@ -63,24 +129,6 @@ void LogMenu(void){
                 index = 0;
                 writeMemoryAddress = 10;
                 break;
-        }
-
-        /* Decode 6 Coordinates from EEPROM */
-        if(waypoint.isStartUp) {
-                writeMemoryAddress = 10;
-                index = 0;
-                for(int i = 0; i < 6; i++) {
-                        latMem[index] = decodeFromEEPROM(writeMemoryAddress);
-                        writeMemoryAddress += 6;
-                        delay(10);
-                        lngMem[index] = decodeFromEEPROM(writeMemoryAddress);
-                        writeMemoryAddress += 6;
-                        delay(10);
-                        index++;
-                }
-                waypoint.isStartUp = false;
-                writeMemoryAddress = 10;
-                index = 0;
         }
         decodeGPSNMEA(1000);
 }
