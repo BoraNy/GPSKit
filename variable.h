@@ -8,6 +8,7 @@
 #define A_Pin       2
 #define B_Pin       3
 #define C_Pin       4
+#define Buzzer_Pin  53
 
 /* Icon Enumeration */
 typedef enum {

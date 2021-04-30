@@ -1,3 +1,9 @@
+void buttonPressed(void){
+  digitalWrite(Buzzer_Pin, HIGH);
+  delay(5);
+  digitalWrite(Buzzer_Pin, LOW);
+}
+
 void ShowMenuIcon(int bitmap_id) {
         if (menu.newTabFlag) {
                 display.clearDisplay();
