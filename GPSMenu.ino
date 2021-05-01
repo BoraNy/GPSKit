@@ -3,7 +3,7 @@ void noReceptionSignal(void) {
         gps_var.satellite_acquiring_time = millis();
         if ((gps.location.lat() == 0) && (gps.location.lng() == 0)
             && (gps_var.satellite_acquiring_time > 180000)) {
-                for (int step = 0; step < 5; step++) {
+                for (int step = 0; step < 3; step++) {
                         logic.lastState = true;
                         display.clearDisplay();
                         display.setTextColor(WHITE);
