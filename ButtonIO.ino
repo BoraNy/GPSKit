@@ -9,7 +9,6 @@ void BButtonISR(void) {
         }
         /* Clear Old Rectangle */
         display.drawRoundRect(menu.iconX + 32, menu.iconY, 32, 32, 3, BLACK);
-        buttonPressed();
 }
 
 void AButtonISR(void){
@@ -21,7 +20,6 @@ void AButtonISR(void){
         }
         display.clearDisplay();
         last_interrupt_time = millis(); /* Update Interrupt Time */
-        buttonPressed();
 }
 
 void CButton(void)
@@ -35,7 +33,6 @@ void CButton(void)
                 last_interrupt_time = millis(); /* Update Interrupt Time */
                 display.drawRoundRect(menu.iconX - 32, menu.iconY, 32, 32, 3, BLACK);
         }
-        buttonPressed();
 }
 
 void ButtonIO(void) {

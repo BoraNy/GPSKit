@@ -1,7 +1,7 @@
-void buttonPressed(void){
-  digitalWrite(Buzzer_Pin, HIGH);
-  delay(5);
-  digitalWrite(Buzzer_Pin, LOW);
+void dataSensIndicator(void){
+        digitalWrite(USR_LED, LOW);
+        delay(10);
+        digitalWrite(USR_LED, HIGH);
 }
 
 void ShowMenuIcon(int bitmap_id) {

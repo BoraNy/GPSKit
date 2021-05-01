@@ -71,6 +71,7 @@ void UIMenu(void){
                         ShowMenuIcon(GPS_ICON);
                         GPSMenu();
                         ButtonIO();
+                        dataSensIndicator();
                         display.clearDisplay();
                         break;
 
@@ -78,18 +79,21 @@ void UIMenu(void){
                         ShowMenuIcon(SATELLITE_ICON);
                         SatelliteTracker();
                         ButtonIO();
+                        dataSensIndicator();
                         break;
 
                 case 2:
                         ShowMenuIcon(DEVIATION_MAP_ICON);
                         DeviationMap();
                         ButtonIO();
+                        dataSensIndicator();
                         break;
 
                 case 3:
                         ShowMenuIcon(COMPASS_ICON);
                         CompassMenu();
                         ButtonIO();
+                        dataSensIndicator();
                         display.clearDisplay();
                         break;
 
@@ -97,20 +101,24 @@ void UIMenu(void){
                         ShowMenuIcon(ALTIMETER_ICON);
                         AltitudeMenu();
                         ButtonIO();
+                        dataSensIndicator();
                         break;
 
                 case 5:
                         ShowMenuIcon(HARDWARE_ICON);
                         InfoMenu();
                         ButtonIO();
+                        dataSensIndicator();
                         break;
 
                 case 6:
                         LogMenu();
+                        dataSensIndicator();
                         break;
 
                 case 7:
                         WaypointMenu();
+                        dataSensIndicator();
                         display.clearDisplay();
                         break;
                 }

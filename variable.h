@@ -8,7 +8,7 @@
 #define A_Pin       2
 #define B_Pin       3
 #define C_Pin       4
-#define Buzzer_Pin  53
+#define USR_LED     53
 
 /* Icon Enumeration */
 typedef enum {
@@ -59,6 +59,7 @@ struct menu_s {
         bool switchMenu = false;
         int iconX = 0, iconY = 0;
         bool newTabFlag = false, gpsMenuFlag = false;
+        unsigned long tick = 0;
         char month[12][4] = {
                 "DEC", "JAN", "FEB", "MAR", "APR", "MAY",
                 "JUN", "JUL", "AUG", "SEP", "OCT", "NOV"

@@ -72,7 +72,7 @@ void setup() {
         pinMode(A_Pin, INPUT_PULLUP);
         pinMode(B_Pin, INPUT_PULLUP);
         pinMode(C_Pin, INPUT_PULLUP);
-        pinMode(Buzzer_Pin, OUTPUT);
+        pinMode(USR_LED, OUTPUT); digitalWrite(USR_LED, HIGH);
         pinMode(LED_BUILTIN, OUTPUT);
         display.setCursor(1, 11);
         display.print(F("[  OK  ] GPIO"));
