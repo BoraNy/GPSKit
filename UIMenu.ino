@@ -52,6 +52,40 @@ void UIMenu(void){
                 }
         }
 
+        /* Show Clock On Standby */
+        menu.tick = millis();
+        if(menu.tick - menu.lastTick >= 60000) /* Wait for 1 minute to Standby */
+        {
+                display.setTextSize(2);
+                display.setTextColor(WHITE);
+                while (true) {
+                        menu.lastTick = millis();
+
+                        if(!digitalRead(C_Pin)) {
+                                break;
+                        }
+                        decodeGPSNMEA(1000);
+                        display.clearDisplay();
+                        display.setCursor(31, 26);
+                        display.setTextSize(2);
+                        display.print(gps.time.hour() + getTimeZone(gps.location.lng()));
+                        display.print(':');
+                        if(gps.time.minute() < 10)
+                                display.print('0');
+                        display.print(gps.time.minute());
+
+                        display.setTextSize(1);
+                        display.setCursor(94, 26);
+                        if(gps.time.second() < 10)
+                                display.print('0');
+                        display.print(gps.time.second());
+                        display.display();
+                }
+                display.clearDisplay();
+        }
+
+        /* End Show Clock On Standby */
+
         /* Draw Menu Icons */
         display.drawBitmap(4, 4, menuGPS, 24, 24, 1);
         display.drawBitmap(36, 4, menuSatellite, 24, 24, 1);
@@ -79,7 +113,6 @@ void UIMenu(void){
                         ShowMenuIcon(SATELLITE_ICON);
                         SatelliteTracker();
                         ButtonIO();
-                        dataSensIndicator();
                         break;
 
                 case 2:
