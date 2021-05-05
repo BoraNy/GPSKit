@@ -68,6 +68,8 @@ void UIMenu(void){
                         display.clearDisplay();
                         display.setCursor(31, 26);
                         display.setTextSize(2);
+                        if(gps.time.hour() < 10)
+                                display.print(' ');
                         display.print(gps.time.hour() + getTimeZone(gps.location.lng()));
                         display.print(':');
                         if(gps.time.minute() < 10)
