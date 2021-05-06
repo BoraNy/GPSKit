@@ -77,10 +77,24 @@ void UIMenu(void){
                         display.print(gps.time.minute());
 
                         display.setTextSize(1);
-                        display.setCursor(94, 26);
+                        display.setCursor(94, 25);
                         if(gps.time.second() < 10)
                                 display.print('0');
                         display.print(gps.time.second());
+
+                        /* Show Time Zone */
+                        if(getTimeZone(gps.location.lng()) == 0)
+                        {
+                          display.setCursor(94, 34);
+                          display.print(F("UTC"));
+                        }else{
+                          display.setCursor(94, 34);
+                          display.print(F("GMT"));
+                          if(getTimeZone(gps.location.lng()) > 0)
+                              display.print('+');
+                          display.print(getTimeZone(gps.location.lng()));
+                        }
+                        
                         display.display();
                 }
                 display.clearDisplay();
