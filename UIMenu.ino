@@ -68,7 +68,7 @@ void UIMenu(void){
                         display.clearDisplay();
                         display.setCursor(31, 26);
                         display.setTextSize(2);
-                        if(gps.time.hour() < 10)
+                        if((gps.time.hour() + getTimeZone(gps.location.lng())) < 10)
                                 display.print(' ');
                         display.print(gps.time.hour() + getTimeZone(gps.location.lng()));
                         display.print(':');
@@ -122,6 +122,7 @@ void UIMenu(void){
                         GPSMenu();
                         ButtonIO();
                         dataSensIndicator();
+                        menu.lastTick = millis();
                         display.clearDisplay();
                         break;
 
@@ -129,6 +130,7 @@ void UIMenu(void){
                         ShowMenuIcon(SATELLITE_ICON);
                         SatelliteTracker();
                         ButtonIO();
+                        menu.lastTick = millis();
                         break;
 
                 case 2:
@@ -136,6 +138,7 @@ void UIMenu(void){
                         DeviationMap();
                         ButtonIO();
                         dataSensIndicator();
+                        menu.lastTick = millis();
                         break;
 
                 case 3:
@@ -143,6 +146,7 @@ void UIMenu(void){
                         CompassMenu();
                         ButtonIO();
                         dataSensIndicator();
+                        menu.lastTick = millis();
                         display.clearDisplay();
                         break;
 
@@ -151,6 +155,7 @@ void UIMenu(void){
                         AltitudeMenu();
                         ButtonIO();
                         dataSensIndicator();
+                        menu.lastTick = millis();
                         break;
 
                 case 5:
@@ -158,16 +163,19 @@ void UIMenu(void){
                         InfoMenu();
                         ButtonIO();
                         dataSensIndicator();
+                        menu.lastTick = millis();
                         break;
 
                 case 6:
                         LogMenu();
                         dataSensIndicator();
+                        menu.lastTick = millis();
                         break;
 
                 case 7:
                         WaypointMenu();
                         dataSensIndicator();
+                        menu.lastTick = millis();
                         display.clearDisplay();
                         break;
                 }
