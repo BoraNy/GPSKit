@@ -130,7 +130,7 @@ void setup() {
         display.clearDisplay();
 
         /* Show Rangeman Car Logo */
-        display.drawBitmap(40, 2, borany_icon, 48, 60, 1);
+        display.drawBitmap(28, 2, borany_icon, 72, 60, 1);
         display.display();
         delay(3000);
         display.clearDisplay();
