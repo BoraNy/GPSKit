@@ -68,7 +68,7 @@ void UIMenu(void){
                         display.clearDisplay();
                         display.setCursor(31, 26);
                         display.setTextSize(2);
-                        if(gps.time.hour() < 10)
+                        if((gps.time.hour() + getTimeZone(gps.location.lng())) < 10)
                                 display.print(' ');
                         display.print(gps.time.hour() + getTimeZone(gps.location.lng()));
                         display.print(':');
@@ -77,10 +77,24 @@ void UIMenu(void){
                         display.print(gps.time.minute());
 
                         display.setTextSize(1);
-                        display.setCursor(94, 26);
+                        display.setCursor(94, 25);
                         if(gps.time.second() < 10)
                                 display.print('0');
                         display.print(gps.time.second());
+
+                        /* Show Time Zone */
+                        if(getTimeZone(gps.location.lng()) == 0)
+                        {
+                          display.setCursor(94, 34);
+                          display.print(F("UTC"));
+                        }else{
+                          display.setCursor(94, 34);
+                          display.print(F("GMT"));
+                          if(getTimeZone(gps.location.lng()) > 0)
+                              display.print('+');
+                          display.print(getTimeZone(gps.location.lng()));
+                        }
+                        
                         display.display();
                 }
                 display.clearDisplay();
@@ -108,6 +122,7 @@ void UIMenu(void){
                         GPSMenu();
                         ButtonIO();
                         dataSensIndicator();
+                        menu.lastTick = millis();
                         display.clearDisplay();
                         break;
 
@@ -115,6 +130,7 @@ void UIMenu(void){
                         ShowMenuIcon(SATELLITE_ICON);
                         SatelliteTracker();
                         ButtonIO();
+                        menu.lastTick = millis();
                         break;
 
                 case 2:
@@ -122,6 +138,7 @@ void UIMenu(void){
                         DeviationMap();
                         ButtonIO();
                         dataSensIndicator();
+                        menu.lastTick = millis();
                         break;
 
                 case 3:
@@ -129,6 +146,7 @@ void UIMenu(void){
                         CompassMenu();
                         ButtonIO();
                         dataSensIndicator();
+                        menu.lastTick = millis();
                         display.clearDisplay();
                         break;
 
@@ -137,6 +155,7 @@ void UIMenu(void){
                         AltitudeMenu();
                         ButtonIO();
                         dataSensIndicator();
+                        menu.lastTick = millis();
                         break;
 
                 case 5:
@@ -144,16 +163,19 @@ void UIMenu(void){
                         InfoMenu();
                         ButtonIO();
                         dataSensIndicator();
+                        menu.lastTick = millis();
                         break;
 
                 case 6:
                         LogMenu();
                         dataSensIndicator();
+                        menu.lastTick = millis();
                         break;
 
                 case 7:
                         WaypointMenu();
                         dataSensIndicator();
+                        menu.lastTick = millis();
                         display.clearDisplay();
                         break;
                 }
