@@ -50,7 +50,7 @@ void InfoMenu(void) {
   display.setCursor(1, 47);  display.print(F("EEPROM"));
   display.setCursor(64, 47); display.print(F("1.70%"));
   display.setCursor(1, 56);  display.print(F("VERSION"));
-  display.setCursor(64, 56); display.print(F("8.052021"));
+  display.setCursor(64, 56); display.print(F("18.082021"));
   display.display();
   display.clearDisplay();
 
