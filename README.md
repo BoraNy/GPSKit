@@ -6,6 +6,8 @@ For this GPS Kit contained a fully functional GNSS Receiver with Digital Compass
 
 * Arduino MEGA 256kB Flash Storage/ 8kB SRAM
 * LSM303DLHC 3D accelerometer and 3D magnetometer
+* NEO-6M u-blox GPS Module
+* DHT11 Temperature-Humidity Sensor
 
 ## Features
 
