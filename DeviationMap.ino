@@ -2,10 +2,10 @@ void DeviationMap(void) {
         /* Draw NEWS */
         display.setTextSize(1);
         display.setTextColor(WHITE);
-        display.setCursor(62, 1); display.print('N');
-        display.setCursor(121, 29); display.print('E');
-        display.setCursor(1, 29); display.print('W');
-        display.setCursor(62, 57); display.print('S');
+        display.setCursor(62, 1); display.print('^');
+        display.setCursor(121, 29); display.print('>');
+        display.setCursor(1, 29); display.print('<');
+        display.setCursor(62, 57); display.print('_');
 
         /* Show Update Satellite Icon */
         display.fillRect(115, 0, 60, 7, BLACK);
@@ -51,7 +51,7 @@ void DeviationMap(void) {
                         display.drawPixel(64, y, logic.lastState);
                         logic.lastState = !logic.lastState;
                 }
-                
+
                 /* Draw Point Respond to Update Coordinate */
                 display.fillCircle(deviMap.x_point + deviMap.x_change,
                                    deviMap.y_point + deviMap.y_change, 1, WHITE);

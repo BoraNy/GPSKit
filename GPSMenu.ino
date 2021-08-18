@@ -70,7 +70,7 @@ void GPSMenu(void) {
                         } else {
                                 display.fillRect(0, 0, 128, 9, BLACK);
                                 display.setTextColor(WHITE);
-                                display.print(F("ACQUIRING SATELLITE"));
+                                display.print(F("ACQUIRING SATELLITES"));
                         }
                         display.drawBitmap(37, 10, connecting_icon, 54, 54, WHITE);
                 }

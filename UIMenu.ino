@@ -94,7 +94,7 @@ void UIMenu(void){
                               display.print('+');
                           display.print(getTimeZone(gps.location.lng()));
                         }
-                        
+
                         display.display();
                 }
                 display.clearDisplay();
@@ -145,7 +145,6 @@ void UIMenu(void){
                         ShowMenuIcon(COMPASS_ICON);
                         CompassMenu();
                         ButtonIO();
-                        dataSensIndicator();
                         menu.lastTick = millis();
                         display.clearDisplay();
                         break;

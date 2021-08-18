@@ -51,7 +51,7 @@ void LogMenu(void){
         if (writeMemoryAddress > 76)
                 writeMemoryAddress = 10;
 
-        /* Clear Current Location to Memory */
+        /* Write Current Location to EEPROM */
         if(!digitalRead(C_Pin)) {
                 display.setTextSize(1);
                 display.setTextColor(WHITE);
@@ -107,7 +107,7 @@ void LogMenu(void){
                 last_interrupt_time = millis(); /* Update Interrupt Time */
         }
 
-        /* Clear Location Memory */
+        /* Clear Locations in EEPROM */
         while(!digitalRead(B_Pin)) {
                 display.clearDisplay();
                 display.setCursor(1, 1);

@@ -75,9 +75,9 @@ void CompassMenu(void) {
         /* NEWS Indicator */
         if ((int(compass_var.heading) == 0)   || (int(compass_var.heading) == 90) ||
             (int(compass_var.heading) == 180) || (int(compass_var.heading) == 270))
-                digitalWrite(LED_BUILTIN, HIGH);
+                digitalWrite(USR_LED, LOW);
         else
-                digitalWrite(LED_BUILTIN, LOW);
+                digitalWrite(USR_LED, HIGH);
 
         display.display();
 }

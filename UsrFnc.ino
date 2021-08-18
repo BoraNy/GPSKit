@@ -144,7 +144,7 @@ void drawBitmap(int id) {
                 display.drawBitmap(38, 0, compass_logo, 52, 52, 1);
         }
         if (id == ALTIMETER_ICON) {
-                display.setCursor(19, 57);  display.print(F("ALTIMETER GRAPH"));
+                display.setCursor(37, 57);  display.print(F("ALTIMETER"));
                 display.drawBitmap(38, 0, altimeter_logo, 52, 52, 1);
         }
         if (id == HARDWARE_ICON) {
