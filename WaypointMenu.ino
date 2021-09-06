@@ -120,7 +120,7 @@ void WaypointMenu(void)
         waypoint.distance_between_waypoints = waypoint.distance_between_waypoints * waypoint.scale;
 
         /* Calculate Endpoint Coordinate on Screen */
-        waypoint.course_to_waypoint = 360 - waypoint.course_to_waypoint;
+        waypoint.course_to_waypoint = 360 - waypoint.course_to_waypoint - 90;
         waypoint.screen_x = 64 + waypoint.distance_between_waypoints * cos(waypoint.course_to_waypoint * M_PI / 180);
         waypoint.screen_y = 32 + waypoint.distance_between_waypoints * sin(waypoint.course_to_waypoint * M_PI / 180);
 
@@ -146,7 +146,7 @@ void WaypointMenu(void)
         display.setCursor(1, 56);
         display.print(waypoint.distance_between_waypoints);
         display.print(F("m "));
-        display.print(360 - waypoint.course_to_waypoint);
+        display.print(360 - waypoint.course_to_waypoint - 90);
         display.print(F("DEG"));
 
         /* Draw Current Pos BMP */
