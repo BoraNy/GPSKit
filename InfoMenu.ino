@@ -44,9 +44,9 @@ void InfoMenu(void) {
   /* Hardware Info */
   display.drawLine(61, 1, 61, 63, WHITE);
   display.setCursor(1, 29);  display.print(F("FLASH"));
-  display.setCursor(64, 29); display.print(F("22%"));
+  display.setCursor(64, 29); display.print(F("46%"));
   display.setCursor(1, 38);  display.print(F("RAM"));
-  display.setCursor(64, 38); display.print(F("29%"));
+  display.setCursor(64, 38); display.print(F("15%"));
   display.setCursor(1, 47);  display.print(F("EEPROM"));
   display.setCursor(64, 47); display.print(F("1.70%"));
   display.setCursor(1, 56);  display.print(F("VERSION"));
