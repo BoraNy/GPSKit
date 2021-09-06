@@ -183,9 +183,9 @@ void GPSMenu(void) {
                 display.display();
 
                 if (gps.satellites.value() == 0)
-                        digitalWrite(LED_BUILTIN, HIGH);
+                        digitalWrite(USR_LED_1, HIGH);
                 else
-                        digitalWrite(LED_BUILTIN, LOW);
+                        digitalWrite(USR_LED_1, LOW);
 
                 /* Show Update Interval Menu */
                 while(!digitalRead(B_Pin))
