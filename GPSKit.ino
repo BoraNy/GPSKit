@@ -69,11 +69,14 @@ void setup() {
         /* GPIO & Interrupt Setup */
         attachInterrupt(digitalPinToInterrupt(A_Pin), AButtonISR, FALLING);
         attachInterrupt(digitalPinToInterrupt(B_Pin), BButtonISR, FALLING);
+        
         pinMode(A_Pin, INPUT_PULLUP);
         pinMode(B_Pin, INPUT_PULLUP);
         pinMode(C_Pin, INPUT_PULLUP);
-        pinMode(USR_LED, OUTPUT); digitalWrite(USR_LED, HIGH);
-        pinMode(LED_BUILTIN, OUTPUT);
+        pinMode(USR_LED_0, OUTPUT); digitalWrite(USR_LED_0, LOW);
+        pinMode(USR_LED_1, OUTPUT); digitalWrite(USR_LED_1, HIGH);
+        pinMode(USR_LED_2, OUTPUT); digitalWrite(USR_LED_2, LOW);
+        
         display.setCursor(1, 11);
         display.print(F("[  OK  ] GPIO"));
         display.display();

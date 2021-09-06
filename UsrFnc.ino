@@ -1,7 +1,7 @@
 void dataSensIndicator(void){
-        digitalWrite(USR_LED, LOW);
+        digitalWrite(USR_LED_0, LOW);
         delay(10);
-        digitalWrite(USR_LED, HIGH);
+        digitalWrite(USR_LED_0, HIGH);
 }
 
 void ShowMenuIcon(int bitmap_id) {

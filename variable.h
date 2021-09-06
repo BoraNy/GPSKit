@@ -6,9 +6,11 @@
 
 #define DHT11_PIN   2
 #define A_Pin       2
-#define B_Pin       3
-#define C_Pin       4
-#define USR_LED     53
+#define B_Pin       1
+#define C_Pin       0
+#define USR_LED_0   21
+#define USR_LED_1   22
+#define USR_LED_2   23
 
 /* Icon Enumeration */
 typedef enum {

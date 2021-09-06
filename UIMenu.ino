@@ -1,4 +1,5 @@
 void UIMenu(void){
+        BButtonISR(); /* Get B Button Input */
         CButton(); /* Get C Button Input */
 
         if((menu.iconX > 96) && (menu.iconY == 32)) {
