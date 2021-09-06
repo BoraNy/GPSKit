@@ -36,7 +36,7 @@ double decodeFromEEPROM(int address);
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire);
 LSM303 compass;
 TinyGPSPlus gps;
-SoftwareSerial ss(10, 11);
+SoftwareSerial ss(19, 20);
 DHTNEW dht11(DHT11_PIN);
 
 /* Config Custom Satellite Tracker Decoder */
@@ -69,14 +69,14 @@ void setup() {
         /* GPIO & Interrupt Setup */
         attachInterrupt(digitalPinToInterrupt(A_Pin), AButtonISR, FALLING);
         attachInterrupt(digitalPinToInterrupt(B_Pin), BButtonISR, FALLING);
-        
+
         pinMode(A_Pin, INPUT_PULLUP);
         pinMode(B_Pin, INPUT_PULLUP);
         pinMode(C_Pin, INPUT_PULLUP);
         pinMode(USR_LED_0, OUTPUT); digitalWrite(USR_LED_0, LOW);
         pinMode(USR_LED_1, OUTPUT); digitalWrite(USR_LED_1, HIGH);
         pinMode(USR_LED_2, OUTPUT); digitalWrite(USR_LED_2, LOW);
-        
+
         display.setCursor(1, 11);
         display.print(F("[  OK  ] GPIO"));
         display.display();
