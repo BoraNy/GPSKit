@@ -1,6 +1,7 @@
 void UIMenu(void){
-        BButtonISR(); /* Get B Button Input */
-        CButton(); /* Get C Button Input */
+        // AButtonISR();   /* Get A Button Input */
+        BButtonISR();   /* Get B Button Input */
+        CButton();      /* Get C Button Input */
 
         if((menu.iconX > 96) && (menu.iconY == 32)) {
                 /* Move Icon Cursor to Home */

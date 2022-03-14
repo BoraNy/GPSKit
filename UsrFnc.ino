@@ -1,3 +1,13 @@
+void drawDottedLineHorizontal(int y)
+{
+  bool invBit = false;
+  for(int x = 0; x <= SCREEN_WIDTH; x++)
+  {
+    display.drawPixel(x, y, invBit);
+    invBit = !invBit;
+  }
+}
+
 void dataSensIndicator(void){
         digitalWrite(USR_LED_0, LOW);
         delay(10);

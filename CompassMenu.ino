@@ -1,4 +1,25 @@
 void CompassMenu(void) {
+        /* Switch to Gravity Graph Mode */
+        static unsigned long last_interrupt_time = 0;
+        while (!digitalRead(B_Pin)) {
+                if (millis() - last_interrupt_time > 200) {
+                        gForceData.switch_to_gGraph = !gForceData.switch_to_gGraph;
+                }
+                last_interrupt_time = millis(); /* Update Interrupt Time */
+        }
+
+        while(gForceData.switch_to_gGraph)
+        {
+          while (!digitalRead(B_Pin)) {
+                  if (millis() - last_interrupt_time > 200) {
+                          gForceData.switch_to_gGraph = !gForceData.switch_to_gGraph;
+                  }
+                  last_interrupt_time = millis(); /* Update Interrupt Time */
+          }
+          gForceGraph();
+        }
+
+        /* Read Magneto Sensor Value */
         compass.read();
         compass_var.heading = atan2(compass.m.y, compass.m.x) * 180 / PI;
         if (compass_var.heading < 0)

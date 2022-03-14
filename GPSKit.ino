@@ -66,16 +66,19 @@ void setup() {
         display.display();
         delay(500);
 
+        /* Input Buttons */
+        pinMode(A_Pin, INPUT_PULLUP);
+        pinMode(B_Pin, INPUT_PULLUP);
+        pinMode(C_Pin, INPUT_PULLUP);
+
         /* GPIO & Interrupt Setup */
         attachInterrupt(digitalPinToInterrupt(A_Pin), AButtonISR, FALLING);
         // attachInterrupt(digitalPinToInterrupt(B_Pin), BButtonISR, FALLING);
 
-        pinMode(A_Pin, INPUT_PULLUP);
-        pinMode(B_Pin, INPUT_PULLUP);
-        pinMode(C_Pin, INPUT_PULLUP);
-        pinMode(USR_LED_0, OUTPUT); digitalWrite(USR_LED_0, LOW);
-        pinMode(USR_LED_1, OUTPUT); digitalWrite(USR_LED_1, HIGH);
-        pinMode(USR_LED_2, OUTPUT); digitalWrite(USR_LED_2, LOW);
+        /* LEDs Outpu */
+        // pinMode(USR_LED_0, OUTPUT); digitalWrite(USR_LED_0, LOW);
+        // pinMode(USR_LED_1, OUTPUT); digitalWrite(USR_LED_1, HIGH);
+        // pinMode(USR_LED_2, OUTPUT); digitalWrite(USR_LED_2, LOW);
 
         display.setCursor(1, 11);
         display.print(F("[  OK  ] GPIO"));
@@ -106,6 +109,7 @@ void setup() {
         compass.m_max = (LSM303::vector<int16_t>) {
                 +32767, +32767, +32767
         };
+
         display.setCursor(1, 31);
         display.print(F("[  OK  ] LSM303DLHC"));
         display.display();

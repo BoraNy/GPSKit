@@ -12,6 +12,20 @@
 #define USR_LED_1   22
 #define USR_LED_2   23
 
+#define _1_G  16384.0
+
+/* gForceGraph */
+struct gForce_s
+{
+  int index = 0;
+  bool switch_to_gGraph = false;
+  int max_aX = 0, max_aY = 0, max_aZ = 0;
+  int min_aX = 0, min_aY = 0, min_aZ = 0;
+  float *accelAmplitudeX = (float*)malloc(SCREEN_WIDTH*sizeof(float));
+  float *accelAmplitudeY = (float*)malloc(SCREEN_WIDTH*sizeof(float));
+  float *accelAmplitudeZ = (float*)malloc(SCREEN_WIDTH*sizeof(float));
+} gForceData;
+
 /* Icon Enumeration */
 typedef enum {
         CONNECTING_ICON = 0,

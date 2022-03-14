@@ -1,3 +1,14 @@
+void AButtonISR(void){
+        static unsigned long last_interrupt_time = 0;
+        if (millis() - last_interrupt_time > 200) {
+                menu.switchMenu = !menu.switchMenu;
+                menu.newTabFlag = true;
+                altitude_graph.x_increment = 0;
+        }
+        display.clearDisplay();
+        last_interrupt_time = millis(); /* Update Interrupt Time */
+}
+
 void BButtonISR(void) {
         static unsigned long last_interrupt_time = 0;
         while (!digitalRead(B_Pin)) {
@@ -9,17 +20,6 @@ void BButtonISR(void) {
         }
         /* Clear Old Rectangle */
         display.drawRoundRect(menu.iconX + 32, menu.iconY, 32, 32, 3, BLACK);
-}
-
-void AButtonISR(void){
-        static unsigned long last_interrupt_time = 0;
-        if (millis() - last_interrupt_time > 200) {
-                menu.switchMenu = !menu.switchMenu;
-                menu.newTabFlag = true;
-                altitude_graph.x_increment = 0;
-        }
-        display.clearDisplay();
-        last_interrupt_time = millis(); /* Update Interrupt Time */
 }
 
 void CButton(void)
