@@ -54,6 +54,10 @@ struct {
 } sats[MAX_SATELLITES];
 
 void setup() {
+        /* GPIO & Interrupt Setup */
+        attachInterrupt(digitalPinToInterrupt(A_Pin), AButtonISR, CHANGE);
+        // attachInterrupt(digitalPinToInterrupt(B_Pin), BButtonISR, FALLING);
+
         /* Check OLED for Error &  Clear Adafruit Logo */
         if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C))
                 while (true)
@@ -71,11 +75,7 @@ void setup() {
         pinMode(B_Pin, INPUT_PULLUP);
         pinMode(C_Pin, INPUT_PULLUP);
 
-        /* GPIO & Interrupt Setup */
-        attachInterrupt(digitalPinToInterrupt(A_Pin), AButtonISR, FALLING);
-        // attachInterrupt(digitalPinToInterrupt(B_Pin), BButtonISR, FALLING);
-
-        /* LEDs Outpu */
+        /* LEDs Output */
         // pinMode(USR_LED_0, OUTPUT); digitalWrite(USR_LED_0, LOW);
         // pinMode(USR_LED_1, OUTPUT); digitalWrite(USR_LED_1, HIGH);
         // pinMode(USR_LED_2, OUTPUT); digitalWrite(USR_LED_2, LOW);

@@ -1,6 +1,6 @@
 void AButtonISR(void){
         static unsigned long last_interrupt_time = 0;
-        if (millis() - last_interrupt_time > 200) {
+        if (millis() - last_interrupt_time > 500) {
                 menu.switchMenu = !menu.switchMenu;
                 menu.newTabFlag = true;
                 altitude_graph.x_increment = 0;
