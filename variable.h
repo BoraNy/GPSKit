@@ -21,9 +21,6 @@ struct gForce_s
   bool switch_to_gGraph = false;
   int max_aX = 0, max_aY = 0, max_aZ = 0;
   int min_aX = 0, min_aY = 0, min_aZ = 0;
-  float *accelAmplitudeX = (float*)malloc(SCREEN_WIDTH*sizeof(float));
-  float *accelAmplitudeY = (float*)malloc(SCREEN_WIDTH*sizeof(float));
-  float *accelAmplitudeZ = (float*)malloc(SCREEN_WIDTH*sizeof(float));
 } gForceData;
 
 /* Icon Enumeration */
