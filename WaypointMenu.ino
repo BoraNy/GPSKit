@@ -41,7 +41,7 @@ void WaypointMenu(void)
             /* Get Coordinate From EERPROM */
             if(!digitalRead(B_Pin))
             {
-                if (millis() - last_interrupt_time > 200)
+                if ((millis() - last_interrupt_time) > 200)
                 {
                     last_interrupt_time = millis(); /* Update Interrupt Time */
                     /* Read Latitude */
@@ -82,7 +82,7 @@ void WaypointMenu(void)
     if(!digitalRead(B_Pin))
     {
         static unsigned long last_interrupt_time = 0;
-        if (millis() - last_interrupt_time > 200)
+        if ((millis() - last_interrupt_time) > 200)
         {
             waypoint.scale *= 1e-1;
             waypoint.decimal_point++;
@@ -92,7 +92,7 @@ void WaypointMenu(void)
     if(!digitalRead(C_Pin))
     {
         static unsigned long last_interrupt_time = 0;
-        if (millis() - last_interrupt_time > 200)
+        if ((millis() - last_interrupt_time) > 200)
         {
             waypoint.scale++;
             waypoint.decimal_point = 0;
@@ -103,7 +103,7 @@ void WaypointMenu(void)
     /* Limit Value */
     if(waypoint.decimal_point > 10) waypoint.decimal_point = 0;
     if(waypoint.scale > 10) waypoint.scale = 10;
-    if(waypoint.scale < 0.0000000001) waypoint.scale = 0.0000000001;
+    if(waypoint.scale < 1E-10) waypoint.scale = 1E-10;
 
     if (gps.satellites.value() == 0)
     {

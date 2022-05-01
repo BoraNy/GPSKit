@@ -7,7 +7,7 @@
 void writeToEEPROM(int address, double value)
 {
     int tempAddress = address;
-    double tempValue = value, bias;
+    double tempValue = value, bias = 0;
     double fraction[3] = {0, 0, 0};
 
     /* Check if value is negative */
@@ -45,9 +45,9 @@ void writeToEEPROM(int address, double value)
 
 double decodeFromEEPROM(int address)
 {
-    double tempValue;
+    double tempValue = 0;
     int tempAddress = address;
-    int bias, fraction[3] = {0, 0, 0}, signBit;
+    int bias = 0, fraction[3] = {0, 0, 0}, signBit = 0;
 
     /* Read value from EEPROM address */
     signBit = EEPROM.read(tempAddress);

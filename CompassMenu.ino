@@ -79,7 +79,7 @@ void CompassMenu(void)
     display.drawCircle(45, 37, 26, WHITE);
 
     /* Draw Compass Line */
-    int r = 20;
+    const int r = 20;
 
     /* Indicator */
     display.fillCircle(5, 15, 2, WHITE);

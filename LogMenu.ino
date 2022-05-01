@@ -1,6 +1,7 @@
 void LogMenu(void)
 {
-    static float latMem[6], lngMem[6];
+    static float latMem[6] = {0, 0, 0, 0, 0, 0},
+				 lngMem[6] = {0, 0, 0, 0, 0, 0};
     static int index = 0, writeMemoryAddress = 10;
 
     /* Decode 6 Coordinates from EEPROM */
@@ -14,16 +15,14 @@ void LogMenu(void)
         display.display();
 
         writeMemoryAddress = 10;
-        index = 0;
         for(int i = 0; i < 6; i++)
         {
-            latMem[index] = decodeFromEEPROM(writeMemoryAddress);
+            latMem[i] = decodeFromEEPROM(writeMemoryAddress);
             writeMemoryAddress += 6;
             delay(10);
-            lngMem[index] = decodeFromEEPROM(writeMemoryAddress);
+            lngMem[i] = decodeFromEEPROM(writeMemoryAddress);
             writeMemoryAddress += 6;
             delay(10);
-            index++;
         }
         waypoint.isStartUp = false;
         writeMemoryAddress = 10;
@@ -72,7 +71,7 @@ void LogMenu(void)
         display.setTextSize(1);
         display.setTextColor(WHITE);
         static unsigned long last_interrupt_time = 0;
-        if (millis() - last_interrupt_time > 200)
+        if ((millis() - last_interrupt_time) > 200)
         {
             switch (index)
             {

@@ -145,13 +145,13 @@ static void decodeGPSNMEA(unsigned long ms)
     {
         while (ss.available()) gps.encode(ss.read());
     }
-    while (millis() - start < ms);
+    while ((millis() - start) < ms);
 }
 
 void WarningAlert(void)
 {
     /* Blink LED Using Timer */
-    if (millis() - SysClkTmr.lastTick >= 500) SysClkTmr.tickState = !SysClkTmr.tickState;
+    if ((millis() - SysClkTmr.lastTick) >= 500) SysClkTmr.tickState = !SysClkTmr.tickState;
     digitalWrite(LED_BUILTIN, SysClkTmr.tickState);
 }
 

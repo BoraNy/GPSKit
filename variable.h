@@ -78,7 +78,7 @@ struct menu_s
     bool switchMenu = false;
     int iconX = 0, iconY = 0;
     bool newTabFlag = false, gpsMenuFlag = false;
-    unsigned long tick = 0, lastTick;
+    unsigned long tick = 0, lastTick = 0;
     char month[12][4] =
     {
         "DEC", "JAN", "FEB", "MAR", "APR", "MAY",

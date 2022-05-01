@@ -1,7 +1,7 @@
 void AButtonISR(void)
 {
     static unsigned long last_interrupt_time = 0;
-    if (millis() - last_interrupt_time > 500)
+    if ((millis() - last_interrupt_time) > 500)
     {
         menu.switchMenu = !menu.switchMenu;
         menu.newTabFlag = true;
@@ -16,7 +16,7 @@ void BButtonISR(void)
     static unsigned long last_interrupt_time = 0;
     while (!digitalRead(B_Pin))
     {
-        if (millis() - last_interrupt_time > 200)
+        if ((millis() - last_interrupt_time) > 200)
         {
             menu.iconX -= 32;
             menu.newTabFlag = true;
@@ -32,7 +32,7 @@ void CButton(void)
     static unsigned long last_interrupt_time = 0;
     while(!digitalRead(C_Pin))
     {
-        if (millis() - last_interrupt_time > 200)
+        if ((millis() - last_interrupt_time) > 200)
         {
             menu.iconX += 32;
             menu.newTabFlag = true;

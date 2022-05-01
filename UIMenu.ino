@@ -73,10 +73,8 @@ void UIMenu(void)
         {
             menu.lastTick = millis();
 
-            if(!digitalRead(C_Pin))
-            {
-                break;
-            }
+            if(!digitalRead(C_Pin)) break;
+			
             decodeGPSNMEA(1000);
             display.clearDisplay();
             display.setCursor(31, 26);

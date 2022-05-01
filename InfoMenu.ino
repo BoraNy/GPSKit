@@ -30,7 +30,7 @@ void InfoMenu(void)
     int sunSet = currentCoordinate.sunset(gps.date.year(), gps.date.month(), gps.date.day(), false); /* No DST */
 
     /* Sun Rise Time */
-    char sunRiseTime[6];
+    char sunRiseTime[6] = {' ', ' ', ' ', ' ', ' ', ' '};
     Dusk2Dawn::min2str(sunRiseTime, sunRise);
     display.setCursor(1, 10);
     display.print(F("SUNRISE"));
@@ -38,7 +38,7 @@ void InfoMenu(void)
     display.print(sunRiseTime);
 
     /* Sunset Time */
-    char sunSetTime[6];
+    char sunSetTime[6] = {' ', ' ', ' ', ' ', ' ', ' '};
     Dusk2Dawn::min2str(sunSetTime, sunSet);
     display.setCursor(1, 20);
     display.print(F("SUNSET"));
@@ -64,7 +64,7 @@ void InfoMenu(void)
     display.setCursor(1, 56);
     display.print(F("VERSION"));
     display.setCursor(64, 56);
-    display.print(F("15.032022"));
+    display.print(F("01.052022"));
     display.display();
     display.clearDisplay();
 
