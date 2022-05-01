@@ -4,7 +4,8 @@ For this GPS Kit contained a fully functional GNSS Receiver with Digital Compass
 
 ## Hardware Components
 
-* Arduino MEGA 256kB Flash Storage/ 8kB SRAM
+* Arduino MEGA 256kB Flash Storage/ 8kB SRAM (Older Build)
+* ATMEGA 1284P 128kB Flash Storage/ 16kB SRAM / 4kB EEPROM
 * LSM303DLHC 3D accelerometer and 3D magnetometer
 * NEO-6M u-blox GPS Module
 * DHT11 Temperature-Humidity Sensor
@@ -38,8 +39,8 @@ Press B and C button for navigation, and Press A for select
 
 # COMPASS Menu
 * Shows the digital compass with two headings
-** 1. True north with circle
-** 2. Heading
+* 1. True north with circle
+* 2. Heading
 * Press B will show the accelerometer menu of real time, min, and maximum graviational pull
 * Press C will shows the detailed info of the start and current coordinates, along with traveled distance from the start point
 
