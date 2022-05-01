@@ -25,32 +25,39 @@ the location data will recover from EEPROM memory
 * Hardware Info Logging
 
 ## Usage & Info
+Press B and C button for navigation, and Press A for select
 
-* **Using Waypoint Menu** Go to **LOG** Menu to say Waypoint, Exit and go back to **NAVI** and select Waypoint from Index 0-5 to show way point on **NAVI** menu
+# GPS Menu
+* Shows the detailed info data received from the satellites
+ 
+# SAT Menu
+* Shows the satellites ID and signal reception strength
 
-In case of the reception signal took too long the info screen will pop up
-and show how to get a better reception signal
+# DEVIATION Menu
+* Shows the position deviation through time
 
-## Button Function in Home Menu
-  * **A Button** Press to switch to respected icon menu
-  * **B Button** Press to switch to previous menu icon
-  * **C Button** Press to switch to next menu icon
+# COMPASS Menu
+* Shows the digital compass with two headings
+** 1. True north with circle
+** 2. Heading
+* Press B will show the accelerometer menu of real time, min, and maximum graviational pull
+* Press C will shows the detailed info of the start and current coordinates, along with traveled distance from the start point
 
-## Button Function in Menu
-  * **A Button** Press to switch to main menu
-  * **B Button** Press to switch to sub Menu 1
-  * **C Button** Press to switch to sub Menu 2
+# ALTIMETER Menu
+* Shows the approximate altitude graph based on the altitude calculated by the satellites (Not accurate)
 
-## Log Menu
-* Press and Hold **C Button** to Log Current Location to memory
-* Press and Hold **B Button** to clear Location in memory
+# SYSTEM Menu
+* Show the sunrise and sunset times based on the calculation of the coordinate and time zone
+* Shows the log of build info
+* Press C will shows the detailed info of the start and current coordinates, along with traveled distance from the start point
 
-## Git Commands
-* **git push -f origin [branch]** force push file to repository case repository conflict
-* **git init** Start local folder as new repository
-* **git remote add [link]** get project origin from github to current directory
-* **git pull** get files from github to current folder
-* **git add .** add all new update file to commit
-* **git commit -m "[comments]"** get new update files committed
-* **git push** push all commited file to github
-* **git status** get status on working directory
+# LOG Menu
+* Press and hold B for erasing all the logged coordinates data from the EEPROM
+* Press and hold C for logging the current coordinate to the EEPROM for later use in **NAVIGATION** menu
+
+# NAVIGATION Menu
+* Press C for selecting the waypoints from 0 to 5, these waypoints are obtained from the **LOG** menu
+* Press B for select the waypoint and starts navigation
+*** During Navigation ***
+* Press and hold C for zoom in
+* Press and hold B for zoom out
