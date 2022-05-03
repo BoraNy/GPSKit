@@ -64,7 +64,7 @@ void InfoMenu(void)
     display.setCursor(1, 56);
     display.print(F("VERSION"));
     display.setCursor(64, 56);
-    display.print(F("01.052022"));
+    display.print(F("03.052022"));
     display.display();
     display.clearDisplay();
 

@@ -19,10 +19,9 @@ void LogMenu(void)
         {
             latMem[i] = decodeFromEEPROM(writeMemoryAddress);
             writeMemoryAddress += 6;
-            delay(10);
+			
             lngMem[i] = decodeFromEEPROM(writeMemoryAddress);
             writeMemoryAddress += 6;
-            delay(10);
         }
         waypoint.isStartUp = false;
         writeMemoryAddress = 10;
