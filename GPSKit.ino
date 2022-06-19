@@ -50,106 +50,100 @@ TinyGPSCustom snr[4];
 static const int MAX_SATELLITES = 40;
 struct
 {
-    bool active;
-    int elevation, azimuth, snr;
+  bool active;
+  int elevation, azimuth, snr;
 } sats[MAX_SATELLITES];
 
-void setup()
-{
-    /* GPIO & Interrupt Setup */
-    attachInterrupt(digitalPinToInterrupt(A_Pin), AButtonISR, CHANGE);
-    // attachInterrupt(digitalPinToInterrupt(B_Pin), BButtonISR, FALLING);
+void setup() {
+  /* GPIO & Interrupt Setup */
+  attachInterrupt(digitalPinToInterrupt(A_Pin), AButtonISR, CHANGE);
+  // attachInterrupt(digitalPinToInterrupt(B_Pin), BButtonISR, FALLING);
 
-    /* Check OLED for Error &  Clear Adafruit Logo */
-    if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C))
-        while (true)
-            WarningAlert(); // LED Alert if the OLED did not start
-    display.clearDisplay();
-    display.setTextSize(1);
-    display.setTextColor(WHITE);
-    display.setCursor(1, 1);
-    display.print(F("[  OK  ] SSD1306"));
-    display.display();
-    delay(500);
+  /* Check OLED for Error &  Clear Adafruit Logo */
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C))
+    while (true)
+      WarningAlert();  // LED Alert if the OLED did not start
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  display.setCursor(1, 1);
+  display.print(F("[  OK  ] SSD1306"));
+  display.display();
+  delay(500);
 
-    /* Input Buttons */
-    pinMode(A_Pin, INPUT_PULLUP);
-    pinMode(B_Pin, INPUT_PULLUP);
-    pinMode(C_Pin, INPUT_PULLUP);
+  /* Input Buttons */
+  pinMode(A_Pin, INPUT_PULLUP);
+  pinMode(B_Pin, INPUT_PULLUP);
+  pinMode(C_Pin, INPUT_PULLUP);
 
-    /* LEDs Output */
-    // pinMode(USR_LED_0, OUTPUT); digitalWrite(USR_LED_0, LOW);
-    // pinMode(USR_LED_1, OUTPUT); digitalWrite(USR_LED_1, HIGH);
-    // pinMode(USR_LED_2, OUTPUT); digitalWrite(USR_LED_2, LOW);
+  /* LEDs Output */
+  // pinMode(USR_LED_0, OUTPUT); digitalWrite(USR_LED_0, LOW);
+  // pinMode(USR_LED_1, OUTPUT); digitalWrite(USR_LED_1, HIGH);
+  // pinMode(USR_LED_2, OUTPUT); digitalWrite(USR_LED_2, LOW);
 
-    display.setCursor(1, 11);
-    display.print(F("[  OK  ] GPIO"));
-    display.display();
-    delay(500);
+  display.setCursor(1, 11);
+  display.print(F("[  OK  ] GPIO"));
+  display.display();
+  delay(500);
 
-    /* SoftwareSerial Setup & Init all the uninitialized TinyGPSCustom objects */
-    ss.begin(9600);
-    for (int i = 0; i < 4; ++i)
-    {
-        satNumber[i].begin(gps, "GPGSV", 4 + 4 * i);  /* offsets 4, 8, 12, 16 */
-        elevation[i].begin(gps, "GPGSV", 5 + 4 * i);  /* offsets 5, 9, 13, 17 */
-        azimuth[i].begin(gps, "GPGSV", 6 + 4 * i);    /* offsets 6, 10, 14, 18 */
-        snr[i].begin(gps, "GPGSV", 7 + 4 * i);        /* offsets 7, 11, 15, 19 */
-    }
-    display.setCursor(1, 21);
-    display.setTextColor(WHITE);
-    display.print(F("[  OK  ] NEO-6M"));
-    display.display();
-    delay(500);
+  /* SoftwareSerial Setup & Init all the uninitialized TinyGPSCustom objects */
+  ss.begin(9600);
+  for (int i = 0; i < 4; ++i) {
+    satNumber[i].begin(gps, "GPGSV", 4 + 4 * i); /* offsets 4, 8, 12, 16 */
+    elevation[i].begin(gps, "GPGSV", 5 + 4 * i); /* offsets 5, 9, 13, 17 */
+    azimuth[i].begin(gps, "GPGSV", 6 + 4 * i);   /* offsets 6, 10, 14, 18 */
+    snr[i].begin(gps, "GPGSV", 7 + 4 * i);       /* offsets 7, 11, 15, 19 */
+  }
+  display.setCursor(1, 21);
+  display.setTextColor(WHITE);
+  display.print(F("[  OK  ] NEO-6M"));
+  display.display();
+  delay(500);
 
-    /* LSM303 Compass Setup */
-    Wire.begin();
-    compass.init();
-    compass.enableDefault();
-    compass.m_min = (LSM303::vector<int16_t>)
-    {
-        -32767, -32767, -32767
-        };
-    compass.m_max = (LSM303::vector<int16_t>)
-    {
-        +32767, +32767, +32767
-        };
+  /* LSM303 Compass Setup */
+  Wire.begin();
+  compass.init();
+  compass.enableDefault();
+  compass.m_min = (LSM303::vector<int16_t>){
+    -32767, -32767, -32767
+  };
+  compass.m_max = (LSM303::vector<int16_t>){
+    +32767, +32767, +32767
+  };
 
-    display.setCursor(1, 31);
-    display.print(F("[  OK  ] LSM303DLHC"));
-    display.display();
-    delay(500);
+  display.setCursor(1, 31);
+  display.print(F("[  OK  ] LSM303DLHC"));
+  display.display();
+  delay(500);
 
-    /* Show DHT11 Initialzaiton Info */
-    display.setCursor(1, 41);
-    display.print(F("[FAILED] DHT11"));
-    display.display();
+  /* Show DHT11 Initialzaiton Info */
+  display.setCursor(1, 41);
+  display.print(F("[FAILED] DHT11"));
+  display.display();
 
-    /* Blinking Cursor */
+  /* Blinking Cursor */
+  gps_var.show_question_mark = !gps_var.show_question_mark;
+  for (int blink = 0; blink < 5; blink++) {
+    display.fillRect(1, 51, 7, 7, BLACK); /* Update Screen */
     gps_var.show_question_mark = !gps_var.show_question_mark;
-    for (int blink = 0; blink < 5; blink++)
-    {
-        display.fillRect(1, 51, 7, 7, BLACK); /* Update Screen */
-        gps_var.show_question_mark = !gps_var.show_question_mark;
-        display.setCursor(1, 51);
-        if (gps_var.show_question_mark)
-            display.print('_');
-        else
-            display.print(' ');
-        display.display();
-        delay(300);
-    }
-    delay(1000);
-    display.clearDisplay();
-
-    /* Show Rangeman Car Logo */
-    display.drawBitmap(28, 2, borany_icon, 72, 60, 1);
+    display.setCursor(1, 51);
+    if (gps_var.show_question_mark)
+      display.print('_');
+    else
+      display.print(' ');
     display.display();
-    delay(3000);
-    display.clearDisplay();
+    delay(300);
+  }
+  delay(1000);
+  display.clearDisplay();
+
+  /* Show Rangeman Car Logo */
+  display.drawBitmap(28, 2, borany_icon, 72, 60, 1);
+  display.display();
+  delay(3000);
+  display.clearDisplay();
 }
 
-void loop()
-{
-    UIMenu();
+void loop() {
+  UIMenu();
 }
